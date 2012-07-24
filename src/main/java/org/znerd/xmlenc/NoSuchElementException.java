@@ -5,13 +5,9 @@ package org.znerd.xmlenc;
  * Exception thrown to indicate a specified XML element is not found and hence
  * unexpected.
  *
- * @since xmlenc 0.37
+ * @since xmlenc 0.53
  */
 public final class NoSuchElementException extends RuntimeException {
-
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
 
    //-------------------------------------------------------------------------
    // Class functions
