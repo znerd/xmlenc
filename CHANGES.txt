@@ -21,6 +21,7 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * Removed superfluous files/directories, such as:
   - src/css/javadoc
+  - src/css/checkstyle
 
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
