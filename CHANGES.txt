@@ -19,6 +19,9 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * Improved the package description of org.znerd.xmlenc.
 
+* Removed superfluous files/directories, such as:
+  - src/css/javadoc
+
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
 
