@@ -6,6 +6,10 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * Consistently spelling xmlenc as 'XMLenc'.
 
+* Reformatted the Java source files.
+
+* Fixed the package of the unit tests.
+
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
 

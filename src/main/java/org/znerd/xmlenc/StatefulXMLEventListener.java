@@ -2,19 +2,18 @@
 package org.znerd.xmlenc;
 
 /**
- * Stateful <code>XMLEventListener</code>. This interface adds a single
- * {@link #getState()}.
- *
+ * Stateful <code>XMLEventListener</code>. This interface adds a single {@link #getState()}.
+ * 
  * @since XMLenc 0.32
  */
-public interface StatefulXMLEventListener
-extends XMLEventListener {
+public interface StatefulXMLEventListener extends XMLEventListener {
 
-   /**
-    * Returns the current state of this outputter.
-    *
-    * @return
-    *    the current state, cannot be <code>null</code>.
-    */
-   XMLEventListenerState getState();
+    /**
+     * Returns the current state of this outputter.
+     * 
+     * @return
+     *         the current state, cannot be <code>null</code>.
+     */
+    @Override
+    XMLEventListenerState getState();
 }
