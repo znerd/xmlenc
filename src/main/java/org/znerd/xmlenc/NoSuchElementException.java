@@ -9,6 +9,8 @@ package org.znerd.xmlenc;
  */
 public final class NoSuchElementException extends RuntimeException {
 
+    private static final long serialVersionUID = -6322505250831708968L;
+
     /**
      * Constructs a new <code>NoSuchElementException</code> with the specified
      * detail message.

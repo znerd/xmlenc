@@ -8,6 +8,8 @@ package org.znerd.xmlenc;
  */
 public final class InvalidXMLException extends RuntimeException {
 
+    private static final long serialVersionUID = -7288705590217605965L;
+
     /**
      * Constructs a new <code>InvalidXMLException</code> with the specified
      * detail message.
