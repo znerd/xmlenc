@@ -5,8 +5,8 @@
   <version>0.53-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Xmlenc</name>
-  <description>Xmlenc, a stream-based XML output library for Java, optimized for performance.</description>
+  <name>XMLenc</name>
+  <description>XMLenc, a stream-based XML output library for Java, optimized for performance.</description>
   <url>http://github.com/znerd/xmlenc/</url>
 
   <inceptionYear>2003</inceptionYear>
@@ -84,10 +84,10 @@
               <manifestSection>
                 <name>org/znerd/xmlenc/</name>
                 <manifestEntries>
-                  <Specification-Title>Xmlenc</Specification-Title>
+                  <Specification-Title>XMLenc</Specification-Title>
                   <Specification-Version>${project.version}</Specification-Version>
                   <Specification-Vendor>znerd.org</Specification-Vendor>
-                  <Implementation-Title>Xmlenc</Implementation-Title>
+                  <Implementation-Title>XMLenc</Implementation-Title>
                   <Implementation-Version>${project.version}</Implementation-Version>
                   <Implementation-Vendor>znerd.org</Implementation-Vendor>
                 </manifestEntries>
