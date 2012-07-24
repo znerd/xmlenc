@@ -1429,8 +1429,9 @@ implements StatefulXMLEventListener {
       XMLEventListenerState oldState = _state;
       _state = XMLEventListenerStates.ERROR_STATE;
 
+      String typeFound;
       do {
-         String typeFound = _elementStack[_elementStackSize-1];
+         typeFound = _elementStack[_elementStackSize-1];
 
          // Write output
          if (oldState == XMLEventListenerStates.START_TAG_OPEN) {
