@@ -1,0 +1,13 @@
+*.swp
+.checkstyle
+.classpath
+.externalToolBuilders
+.project
+.settings
+META-INF
+maven-eclipse.xml
+target
+*.class
+*.jar
+*.war
+*.ear
