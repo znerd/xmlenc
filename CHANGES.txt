@@ -11,7 +11,14 @@ CHANGES INTRODUCED IN XMLENC 0.53:
 
 * Removed some @since tags on private fields.
 
-* Added method emptyTag(String) to class XMLOutputter.
+* Removed all @version and @author tags.
+
+* Added method emptyTag(String) to class XMLOutputter. It can throw the (new)
+  exception NoSuchElementException.
+
+* Reformatted the Java source files.
+
+* This library is now built with Maven instead of Ant.
 
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.52:
