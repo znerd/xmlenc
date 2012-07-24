@@ -1,50 +1,30 @@
 // See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Tests on the <code>XMLOutputter</code> class.
  */
-public class XMLOutputterTest extends TestCase {
-
-    /**
-     * Returns a test suite with all test cases defined by this class.
-     * 
-     * @return
-     *         the test suite, never <code>null</code>.
-     */
-    public static Test suite() {
-        return new TestSuite(XMLOutputterTest.class);
-    }
+public class XMLOutputterTest {
 
     private final String DEFAULT_ENCODING = "UTF-8";
-
-    /**
-     * Constructs a new <code>NumberCentralTest</code> test suite with the
-     * specified name. The name will be passed to the superconstructor.
-     * 
-     * @param name
-     *        the name for this test suite.
-     */
-    public XMLOutputterTest(String name) {
-        super(name);
-    }
 
     private StringWriter _stringWriter;
     private XMLOutputter _outputter;
 
-    /**
-     * Performs setup for the tests.
-     */
-    @Override
-    protected void setUp() {
+    @Before
+    public void setUp() {
         _outputter = new XMLOutputter();
     }
 
@@ -58,6 +38,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testConstructor() {
         assertNull(_outputter.getWriter());
         assertEquals(XMLEventListenerStates.UNINITIALIZED, _outputter.getState());
@@ -66,11 +47,13 @@ public class XMLOutputterTest extends TestCase {
         assertEquals("", _outputter.getIndentation());
     }
 
+    @Test
     public void testGetWriter() {
         reset();
         assertEquals(_stringWriter, _outputter.getWriter());
     }
 
+    @Test
     public void testSetState() throws InvalidXMLException, IOException {
         reset();
 
@@ -113,6 +96,7 @@ public class XMLOutputterTest extends TestCase {
         assertEquals(state, _outputter.getState());
     }
 
+    @Test
     public void testGetState() throws InvalidXMLException, IOException {
         reset();
         assertEquals(XMLEventListenerStates.BEFORE_XML_DECLARATION, _outputter.getState());
@@ -232,6 +216,7 @@ public class XMLOutputterTest extends TestCase {
         assertEquals(XMLEventListenerStates.AFTER_ROOT_ELEMENT, _outputter.getState());
     }
 
+    @Test
     public void testGetElementStackSize() throws InvalidXMLException, IOException {
 
         reset();
@@ -268,6 +253,7 @@ public class XMLOutputterTest extends TestCase {
         assertEquals(0, _outputter.getElementStackSize());
     }
 
+    @Test
     public void testGetQuotationMark() {
         reset();
 
@@ -277,6 +263,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testSetQuotationMark() {
         reset();
 
@@ -291,6 +278,7 @@ public class XMLOutputterTest extends TestCase {
         assertEquals('"', _outputter.getQuotationMark());
     }
 
+    @Test
     public void testDeclaration() throws InvalidXMLException, IOException {
 
         reset();
@@ -342,6 +330,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testDtd() throws InvalidXMLException, IOException {
 
         reset();
@@ -418,6 +407,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testStag() throws InvalidXMLException, IOException {
 
         reset();
@@ -470,6 +460,7 @@ public class XMLOutputterTest extends TestCase {
         _outputter.endTag(); // book
     }
 
+    @Test
     public void testAttribute() throws InvalidXMLException, IOException {
 
         reset();
@@ -538,6 +529,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testEtag() throws InvalidXMLException, IOException {
 
         reset();
@@ -558,6 +550,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testPcdata() throws InvalidXMLException, IOException {
 
         reset();
@@ -610,6 +603,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testWhitespace() throws InvalidXMLException, IOException {
 
         reset();
@@ -653,6 +647,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testComment() throws InvalidXMLException, IOException {
 
         reset();
@@ -676,6 +671,7 @@ public class XMLOutputterTest extends TestCase {
         _outputter.endTag();
     }
 
+    @Test
     public void testPi() throws InvalidXMLException, IOException {
 
         reset();
@@ -695,6 +691,7 @@ public class XMLOutputterTest extends TestCase {
         _outputter.pi(" myapp ", "Do something with this.");
     }
 
+    @Test
     public void testCdata() throws InvalidXMLException, IOException {
 
         reset();
@@ -740,6 +737,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testEndDocument() throws InvalidXMLException, IOException {
 
         reset();
@@ -777,6 +775,7 @@ public class XMLOutputterTest extends TestCase {
         }
     }
 
+    @Test
     public void testLineBreak() throws InvalidXMLException, IOException {
 
         reset();
@@ -809,6 +808,7 @@ public class XMLOutputterTest extends TestCase {
         assertEquals("", _outputter.getIndentation());
     }
 
+    @Test
     public void testIndentation() throws InvalidXMLException, IOException {
 
         reset();
@@ -840,6 +840,7 @@ public class XMLOutputterTest extends TestCase {
         assertEquals("\t", _outputter.getIndentation());
     }
 
+    @Test
     public void testInvalidIndentation() throws InvalidXMLException, IOException {
 
         reset();
