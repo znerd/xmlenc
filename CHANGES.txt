@@ -2,6 +2,11 @@ This file contains a detailed explanation of the changes between individual
 versions of xmlenc.
 
 ______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.54:
+
+* Consistently spelling xmlenc as 'XMLenc'.
+
+______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
 
 * Updated e-mailadresses of Ernst de Haan and Anthony Goubard.
