@@ -111,7 +111,7 @@
 
 		<!-- Javadoc-related properties -->
 		<property name="javadoc.srcdir.j2se"   value="${java.home}/src" />
-		<property name="javadoc.srcdir.xmlenc" value="build/src/main" />
+		<property name="javadoc.srcdir.xmlenc" value="build/src/main/java" />
 	</target>
 
 	<target name="version" depends="-init">
@@ -135,7 +135,7 @@
 	<target name="-prepare-src" depends="-prepare">
 		<mkdir dir="build/src/main" />
 		<copy todir="build/src/main">
-			<fileset dir="src/main" includes="**/*.java,**/package.html" />
+			<fileset dir="src/main/java" includes="**/*.java,**/package.html" />
 		</copy>
 		<replace dir="build/src/main">
 			<replacefilter token="%%TITLE%%"   value="${title}" />
@@ -348,7 +348,7 @@
 
 	<target name="checkstyle-text" depends="-prepare-checkstyle" description="Prints checkstyle errors">
 		<checkstyle config="src/config/checkstyle/config.xml" failOnViolation="false">
-			<fileset dir="src/main" includes="**/*.java" />
+			<fileset dir="src/main/java" includes="**/*.java" />
 			<formatter type="plain" />
 		</checkstyle>
 	</target>
@@ -357,7 +357,7 @@
 		<mkdir dir="build/checkstyle" />
 		<mkdir dir="build/checkstyle/xml" />
 		<checkstyle config="src/config/checkstyle/config.xml" failOnViolation="false">
-			<fileset dir="src/main" includes="**/*.java" />
+			<fileset dir="src/main/java" includes="**/*.java" />
 			<formatter type="xml" tofile="build/checkstyle/xml/results.xml"/>
 		</checkstyle>
 	</target>
@@ -405,7 +405,7 @@
 				<include name="build/*.jar"                    />
 				<include name="src/config/**/*"                />
 				<include name="src/css/**/*"                   />
-				<include name="src/main/**/*"                  />
+				<include name="src/main/java/**/*"             />
 				<include name="src/package-lists/**/*"         />
 				<include name="src/tests/**/*"                 />
 				<include name="src/xslt/**/*"                  />
