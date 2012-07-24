@@ -10,6 +10,8 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * Fixed the package of the unit tests.
 
+* Added serialVersionUID class field to Exception classes.
+
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
 
