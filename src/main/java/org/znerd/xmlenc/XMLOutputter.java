@@ -126,11 +126,6 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
     }
 
     /**
-     * Flag that indicates whether anything has been output already.
-     */
-    private boolean _anythingOutput;
-
-    /**
      * The output stream this outputter will write to.
      * <p>
      * This field is initialized by the constructor. It can never be <code>null</code>.
