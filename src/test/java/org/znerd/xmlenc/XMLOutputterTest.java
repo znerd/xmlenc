@@ -19,7 +19,7 @@ import junit.framework.TestSuite;
  * @version $Revision: 1.19 $ $Date: 2007/08/21 21:50:53 $
  * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
-public class XMLOutputterTests extends TestCase {
+public class XMLOutputterTest extends TestCase {
 
    //-------------------------------------------------------------------------
    // Class functions
@@ -32,7 +32,7 @@ public class XMLOutputterTests extends TestCase {
     *    the test suite, never <code>null</code>.
     */
    public static Test suite() {
-      return new TestSuite(XMLOutputterTests.class);
+      return new TestSuite(XMLOutputterTest.class);
    }
 
 
@@ -48,13 +48,13 @@ public class XMLOutputterTests extends TestCase {
    //-------------------------------------------------------------------------
 
    /**
-    * Constructs a new <code>NumberCentralTests</code> test suite with the
+    * Constructs a new <code>NumberCentralTest</code> test suite with the
     * specified name. The name will be passed to the superconstructor.
     *
     * @param name
     *    the name for this test suite.
     */
-   public XMLOutputterTests(String name) {
+   public XMLOutputterTest(String name) {
       super(name);
    }
 

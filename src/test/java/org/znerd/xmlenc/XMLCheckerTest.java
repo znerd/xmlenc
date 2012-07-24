@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
  * @version $Revision: 1.4 $ $Date: 2007/08/21 21:50:53 $
  * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
-public class XMLCheckerTests extends TestCase {
+public class XMLCheckerTest extends TestCase {
 
    //-------------------------------------------------------------------------
    // Class functions
@@ -28,7 +28,7 @@ public class XMLCheckerTests extends TestCase {
     *    the test suite, never <code>null</code>.
     */
    public static Test suite() {
-      return new TestSuite(XMLCheckerTests.class);
+      return new TestSuite(XMLCheckerTest.class);
    }
 
 
@@ -41,13 +41,13 @@ public class XMLCheckerTests extends TestCase {
    //-------------------------------------------------------------------------
 
    /**
-    * Constructs a new <code>XMLCheckerTests</code> test suite with the
+    * Constructs a new <code>XMLCheckerTest</code> test suite with the
     * specified name. The name will be passed to the superconstructor.
     *
     * @param name
     *    the name for this test suite.
     */
-   public XMLCheckerTests(String name) {
+   public XMLCheckerTest(String name) {
       super(name);
    }
 

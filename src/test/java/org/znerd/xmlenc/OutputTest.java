@@ -26,22 +26,11 @@ import junit.framework.TestSuite;
  * @version $Revision: 1.19 $ $Date: 2007/08/21 21:50:53 $
  * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
-public class OutputTests extends TestCase {
+public class OutputTest extends TestCase {
 
    //-------------------------------------------------------------------------
    // Class functions
    //-------------------------------------------------------------------------
-
-   /**
-    * Returns a test suite with all test cases defined by this class.
-    *
-    * @return
-    *    the test suite, never <code>null</code>.
-    */
-   public static Test suite() {
-      return new TestSuite(OutputTests.class);
-   }
-
 
    //-------------------------------------------------------------------------
    // Class fields
@@ -55,13 +44,13 @@ public class OutputTests extends TestCase {
    //-------------------------------------------------------------------------
 
    /**
-    * Constructs a new <code>OutputTests</code> test suite with the
+    * Constructs a new <code>OutputTest</code> test suite with the
     * specified name. The name will be passed to the superconstructor.
     *
     * @param name
     *    the name for this test suite.
     */
-   public OutputTests(String name) {
+   public OutputTest(String name) {
       super(name);
    }
 
