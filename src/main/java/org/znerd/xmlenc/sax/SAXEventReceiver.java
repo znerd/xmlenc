@@ -14,7 +14,7 @@ import org.znerd.xmlenc.XMLEventListener;
  * SAX handler that receives SAX events and transforms them to <em>xmlenc</em>
  * events.
  *
- * @since xmlenc 0.31
+ * @since XMLenc 0.31
  */
 public class SAXEventReceiver
 extends Object

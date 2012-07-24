@@ -4,7 +4,7 @@ package org.znerd.xmlenc;
 /**
  * Enumeration type for line breaks.
  *
- * @since xmlenc 0.35
+ * @since XMLenc 0.35
  */
 public final class LineBreak {
 

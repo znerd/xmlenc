@@ -4,7 +4,7 @@ package org.znerd.xmlenc;
 /**
  * All <code>XMLEventListenerState</code>s.
  *
- * @since xmlenc 0.31
+ * @since XMLenc 0.31
  */
 public interface XMLEventListenerStates {
 

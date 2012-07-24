@@ -4,7 +4,7 @@ package org.znerd.xmlenc;
 /**
  * Utility class that provides XML checking functionality.
  *
- * @since xmlenc 0.41
+ * @since XMLenc 0.41
  */
 public final class XMLChecker extends Object {
 

@@ -4,7 +4,7 @@ package org.znerd.xmlenc;
 /**
  * Class that represents this <em>xmlenc</em> library.
  *
- * @since xmlenc 0.30
+ * @since XMLenc 0.30
  */
 public final class Library extends Object {
 

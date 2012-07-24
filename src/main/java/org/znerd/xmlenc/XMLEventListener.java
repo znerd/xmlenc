@@ -182,7 +182,7 @@ import java.io.UnsupportedEncodingException;
  *    <li>S6: {@link #DOCUMENT_ENDED         DOCUMENT_ENDED}</li>
  * </ul>
  *
- * @since xmlenc 0.30
+ * @since XMLenc 0.30
  */
 public interface XMLEventListener
 extends XMLEventListenerStates {

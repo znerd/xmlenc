@@ -17,7 +17,7 @@ import java.io.Writer;
  *    <li>all <code>ISO-8859</code> encodings
  * </ul>
  *
- * @since xmlenc 0.1
+ * @since XMLenc 0.1
  */
 public class XMLEncoder extends Object {
 

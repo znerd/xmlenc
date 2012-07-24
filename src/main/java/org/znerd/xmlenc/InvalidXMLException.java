@@ -4,7 +4,7 @@ package org.znerd.xmlenc;
 /**
  * Exception thrown when invalid XML is detected.
  *
- * @since xmlenc 0.37
+ * @since XMLenc 0.37
  */
 public final class InvalidXMLException extends RuntimeException {
 

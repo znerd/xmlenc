@@ -74,7 +74,7 @@ import java.io.Writer;
  * instance in the pool. Use {@link #reset(Writer,String)} (with 2 arguments)
  * to re-initialize the instance after fetching it from the pool.
  *
- * @since xmlenc 0.19
+ * @since XMLenc 0.19
  */
 public class XMLOutputter
 extends Object
@@ -453,7 +453,7 @@ implements StatefulXMLEventListener {
     *          || (newState != {@link #START_TAG_OPEN} &amp;&amp; newState != {@link #WITHIN_ELEMENT} &amp;&amp; newElementStack != null)
     *          || newElementStack[<i>n</i>] == null</code> (where <code>0 &lt;= <i>n</i> &lt; newElementStack.length</code>).
     *
-    * @since xmlenc 0.22
+    * @since XMLenc 0.22
     */
    public final void setState(XMLEventListenerState newState, String[] newElementStack)
    throws IllegalArgumentException {
@@ -542,7 +542,7 @@ implements StatefulXMLEventListener {
     *    <code>true</code> if ampersands should be escaped, <code>false</code>
     *    otherwise.
     *
-    * @since xmlenc 0.24
+    * @since XMLenc 0.24
     */
    public final void setEscaping(boolean escapeAmpersands) {
       _escapeAmpersands = escapeAmpersands;
@@ -561,7 +561,7 @@ implements StatefulXMLEventListener {
     *    currently on the element stack, or <code>null</code> if there are no
     *    elements on the stack.
     *
-    * @since xmlenc 0.22
+    * @since XMLenc 0.22
     */
    public final String[] getElementStack() {
       if (_elementStackSize == 0) {
@@ -579,7 +579,7 @@ implements StatefulXMLEventListener {
     * @return
     *    the open element depth, always &gt;= 0.
     *
-    * @since xmlenc 0.22
+    * @since XMLenc 0.22
     */
    public final int getElementStackSize() {
       return _elementStackSize;
@@ -592,7 +592,7 @@ implements StatefulXMLEventListener {
     *    the open element stack capacity, always &gt;=
     *    {@link #getElementStackSize()}.
     *
-    * @since xmlenc 0.28
+    * @since XMLenc 0.28
     */
    public final int getElementStackCapacity() {
       return _elementStack.length;
@@ -1386,7 +1386,7 @@ implements StatefulXMLEventListener {
     *    if an I/O error occurs; this will set the state to
     *    {@link #ERROR_STATE}.
     *
-    * @since xmlenc 0.53
+    * @since XMLenc 0.53
     */
    public final void endTag(String type)
    throws IllegalStateException,
@@ -1464,7 +1464,7 @@ implements StatefulXMLEventListener {
     *    if an I/O error occurs; this will set the state to
     *    {@link #ERROR_STATE}.
     *
-    * @since xmlenc 0.53
+    * @since XMLenc 0.53
     */
    public final void emptyTag(String type)
    throws IllegalStateException, IllegalArgumentException, IOException {

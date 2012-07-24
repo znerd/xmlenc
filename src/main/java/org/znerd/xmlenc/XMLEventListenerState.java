@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * State for an XML event listener.
  *
- * @since xmlenc 0.30
+ * @since XMLenc 0.30
  */
 public final class XMLEventListenerState
 extends Object{
