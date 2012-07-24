@@ -1,0 +1,311 @@
+This file contains a detailed explanation of the changes between individual
+versions of xmlenc.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.53:
+
+* Updated e-mailadresses of Ernst de Haan and Anthony Goubard.
+
+* Slightly improved the XMLOutputter Javadoc class comments by mentioning
+  whether XML Namespaces are supported.
+
+* Removed some @since tags on private fields.
+
+* Added method emptyTag(String) to class XMLOutputter.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.52:
+
+* Generated package now has the prefix .tgz instead of .tar.gz.
+
+* The tests are now included in the package.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.51:
+
+* Added a parameter to the text(Writer, char) method in XMLEncoder to
+  indicate if the ampersands should be escaped. The old method has been
+  deprecated.
+
+* Fixed: the text(Writer, char) method in XMLEncoder now correctly escapes the
+  characters and throws an InvalidXMLException if a character is not valid.
+
+* Improved performance and reduced size of the methods
+  attribute(Writer, String, String, char, boolean) and
+  and text(Writer, char[], int, int, boolean).
+
+* Added more unit tests for the PCDATA section.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.50:
+
+* Changed e-mail address from znerd@FreeBSD.org to wfe.dehaan@gmail.com.
+
+* No longer including the version in the package description.
+
+* Fixed a bug in the XMLEncoder introduced in xmlenc 0.47. Added a unit test
+  for it. The bug was discovered by Tauseef Rehman and Anthony Goubard.
+  Rolled back the implementation of the method
+  attribute(Writer,String,String,char,boolean) in class XMLEncoder to the one
+  that was in revision 1.206 of the file.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.49:
+
+* Extended tests for indentations and line breaks. Improved related code. Now
+  a line break must first be set before an indentation can be set. Also, an
+  indentation must only contain spaces and/or horizontal tab characters.
+  Unsetting the line break now automatically resets the indentation. Fixed a
+  number of bugs that caused unproper output when using indentation.
+
+* Now checking the format of SystemID and PublicID in
+  dtd(String,String,String).
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.48:
+
+* Fixed SF.net bug #1242439. A bug in the IBM JDK 1.3 was causing
+  NoSuchFieldErrors. This has now been worked around.
+
+* Disabled optimization in javac to enable line numbers in stack traces.
+
+* Improved performance tests. Results are now net instead of gross.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.47:
+
+* Improved the performance of the XMLEncoder.
+
+* Introduced performance tests. Execute with 'ant perftests'.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.46:
+
+* Removed UnicodeXMLEncoder and SevenBitEncoder. The code has been moved to
+  XMLEncoder.
+  Typical impact on performance: Medium.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.45:
+
+* Performance-optimized the text and attribute methods in the XMLOutputter
+  class.
+
+* Added an abtract method shouldEscape() to the XMLOutputter.
+
+* The method text(Write,char) is now implemented in the XMLOutputter.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.44:
+
+* Fixed bug in XMLEncoder.text(Writer,char[],int,int,boolean). This
+  method would not output all characters if the specified start index was
+  greater than 0. This was reported by Mark Frost.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.43:
+
+* Fixed bug in XMLEncoder that effectively caused escaping to be always on,
+  instead of configurable using setEscaping() in XMLOutputter and using the
+  escapeAmpersands argument in the text(...) methods in XMLEncoder. This was
+  reported by David Fogel.
+
+* Improved documentation of escapeAmpersands argument in the text(...) methods
+  in class XMLEncoder. This was suggested by David Fogel.
+
+* Fixed typo in Javadoc comment for method declaration() in class
+  XMLOutputter. Reported by Jan Willem Borleffs.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.42:
+
+* Some performance improvements. Suggested by Christian Ullenboom.
+
+* Fixed bug in text(Writer,char[],int,int,boolean). This bug caused the method
+  to behave erroneous if start is not 0 and escapeAmpersands is false. It
+  would write the complete character string, disregarding the specified start
+  index, but assuming 0 instead.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.41:
+
+* Improved performance of whitespace(Writer,char[],int,int): Checking the
+  characters first and then writing the complete character string at once.
+
+* Added XMLChecker class for checking various symbols in the XML grammar.
+
+* XMLOutputter.dtd(String,String,String) now properly checks that the 'name'
+  argument matches the 'Name' production in the XML grammar.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.40:
+
+* Improved functionality of build file. May have some bugs still.
+  Based on XINS build.xml file, see http://xins.sf.net/.
+
+* Changed some directory locations. All XSLT files are now under src/xslt and
+  all CSS files are now under src/css.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.39:
+
+* Removed deprecated classes XMLOutputterStates and SAXOutputter.
+
+* Removed deprecated class function getVersion() from class XMLOutputter.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.38:
+
+* Invalid whitespace is now properly treated as an error. This will cause an
+  InvalidXMLException.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.37:
+
+* Checking invalid XML characters 0-8, 11, 12 and 14-31. Throwing an
+  InvalidXMLException if any of these is found.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.36:
+
+* Using Java2HTML 1.3.1.
+
+* Fixed erroneous @link.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.35:
+
+* Applied some patches submitted by Jochen Schwoerer <j.schwoerer@web.de> that
+  implement pretty printing:
+  - Made class XMLEncoder public again.
+  - Added LineBreak class.
+  - XMLOutputter now supports pretty printing by having a reference to a
+    LineBreak to use and a reference to an indentation character string.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.34:
+
+* Improved the documentation of XMLOutputter, XMLEventListener and
+  XMLEventListenerStates.
+
+* Added a test for XMLOutputter.endDocument().
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.33:
+
+* Fixed some Checkstyle warning.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.32:
+
+* Fixed a bug in XMLOutputter.setState() that was triggered when the new state
+  was UNINITIALIZED. In this case the necessary reset was not performed.
+
+* XMLOutputter.endDocument() now flushes the underlying Writer.
+
+* Tightened state checking in XMLOutputter.
+
+* Improved documentation for XMLOutputter and XMLEventListener.
+
+* Introduced interface StatefulXMLEventListener that adds the getState()
+  method to the XMLEventListener interface.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.31:
+
+* Deprecated SAXOutputter in favor of SAXEventReceiver.
+
+* Deprecated XMLOutputterStates in favor of XMLEventListenerStates.
+
+* Added endDocument() to XMLEventListener.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.30:
+
+* Introduced XMLEventListener interface.
+
+* Introduced Library class and marked XMLOutputter.getVersion() deprecated.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.29:
+
+* SAX support added by means of new class:
+  org.znerd.xmlenc.sax.SAXOutputter
+
+* Added methods pcdata(char[],int,int) and whitespace(char[],int,int) to the
+  XMLOutputter class.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.28:
+
+* Switched from Checkstyle 2.x to Checkstyle 3.
+
+* Added method getElementStackCapacity() and setElementStackCapacity(int).
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.27:
+
+* Strings are no longer trimmed anywhere. This changes the behaviour of the
+  dtd(String,String,String) and pi(String,String) methods.
+
+* Encodings are printed as they are, they are not converted to upper case.
+
+* The encoding 'ASCII' is recognized as an alias of 'US-ASCII'.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.26:
+
+* XMLOutputter.close() can now only be called when the state is either
+  START_TAG_OPEN or WITHIN_ELEMENT.
+
+* Sticking all source files in the tar.gz distribution files.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.25:
+
+* Removed entityRef(String). Was deprecated in 0.24.
+
+* Trying to recover from OutOfMemoryErrors.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.24:
+
+* Added method setEscaping(boolean) to XMLOutputter. Deprecated
+  entityRef(String).
+
+* Removed init(Writer,String), setState(XMLOutputter.State) and getDepth()
+  and XMLOutputterStates.INITIAL_STATE. All were deprecated.
+
+* Added method getVersion() to XMLOutputter. It returns the version of the
+  xmlenc library.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.23:
+
+* Added constructor XMLOutputter(Writer,encoding).
+
+* Added reset(Writer,encoding). Deprecated init(Writer,encoding).
+
+* Removed stag(String), etag() and all getInstance() methods.
+
+______________________________________________________________________________
+CHANGES INTRODUCED IN XMLENC 0.22:
+
+* Small performance improvement in init(Writer,String) and reset() methods.
+  Instead of creating a java.util.Stack instance (to contain the open
+  elements), the clear() method is called on the existing Stack instance. Also
+  made the field final. This could improve the performance slightly as well.
+
+* Removed unused state VOID_WITHIN_ELEMENT.
+
+* Allowing empty CDATA sections and empty comments.
+
+* Internally using a String array instead of a Stack to keep track of the open
+  elements. This should improve performance.
+
+* Added method: String[] getElementStack().
+
+* Added method getElementStackSize() as a replacement for getDepth().
+  Deprecated getDepth().
+
+* Added setState(State,String[]) and deprecated setState(State).
