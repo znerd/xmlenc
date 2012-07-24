@@ -59,7 +59,6 @@ public class XMLOutputterTest extends TestCase {
     }
 
     public void testConstructor() {
-        XMLOutputter outputter = new XMLOutputter();
         assertNull(_outputter.getWriter());
         assertEquals(XMLEventListenerStates.UNINITIALIZED, _outputter.getState());
         assertEquals(0, _outputter.getElementStackSize());
