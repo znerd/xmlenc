@@ -3,34 +3,34 @@ Thanks go to the following people:
 
 * Anthony Goubard <anthony.goubard@nl.wanadoo.com>
 
-  For greatly improving the performance of xmlenc. Improvements available in
-  xmlenc 0.45 and 0.46.
+  For greatly improving the performance of XMLenc. Improvements available in
+  XMLenc 0.45 and 0.46.
 
 
 * Jochen Schwoerer <j.schwoerer@web.de>
 
-  For providing patches to xmlenc 0.34 that implement pretty-printing.
-  Available in xmlenc 0.35.
+  For providing patches to XMLenc 0.34 that implement pretty-printing.
+  Available in XMLenc 0.35.
 
 
 * Christian Ullenboom <c.ullenboom@java-tutor.com>
 
-  For suggesting some performance-enhancements to xmlenc 0.41 that make the
+  For suggesting some performance-enhancements to XMLenc 0.41 that make the
   writing of line breaks to the output stream slightly faster.
-  Available in xmlenc 0.42.
+  Available in XMLenc 0.42.
 
 
 * Jan Willem Borleffs <janwillem.borleffs@nl.wanadoo.com>
 
   For reporting a typo in the declaration() method in XMLOutputter.
-  Fixed in xmlenc 0.43.
+  Fixed in XMLenc 0.43.
 
 
 * David Fogel <dave@25oz.com>
 
   For suggesting adding an explanation in the text(...) methods in the
   XMLEncoder class for the purpose of the escapeAmpersands argument.
-  Available in xmlenc 0.43.
+  Available in XMLenc 0.43.
 
 
 * Mark Frost <mfrost@hemscott.co.uk>
@@ -38,4 +38,4 @@ Thanks go to the following people:
   For reporting a bug in XMLEncoder.text(Writer,char[],int,int,boolean). This
   method would not output all characters if the specified start index was
   greater than 0.
-  Fixed in xmlenc 0.44.
+  Fixed in XMLenc 0.44.

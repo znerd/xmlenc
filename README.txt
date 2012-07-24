@@ -1,4 +1,4 @@
-This is xmlenc, a stream-based XML output library for Java, optimized for
+This is XMLenc, a stream-based XML output library for Java, optimized for
 performance.
 
 This software is available under the terms of a 2-clause BSD-style license,

@@ -1,5 +1,5 @@
 This file contains a detailed explanation of the changes between individual
-versions of xmlenc.
+versions of XMLenc.
 
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.54:
