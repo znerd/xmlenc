@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.znerd</groupId>
+  <artifactId>xmlenc</artifactId>
+  <version>0.53-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Xmlenc</name>
+  <description>Xmlenc, a stream-based XML output library for Java, optimized for performance.</description>
+  <url>http://github.com/znerd/xmlenc/</url>
+
+  <inceptionYear>2003</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>The BSD 2-Clause License</name>
+      <url>http://www.opensource.org/licenses/bsd-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <parent>
+    <groupId>org.znerd</groupId>
+    <artifactId>znerd-oss-parent</artifactId>
+    <version>2</version>
+  </parent>
+
+  <scm>
+    <connection>scm:git:git@github.com:znerd/xmlenc.git</connection>
+    <developerConnection>scm:git:git@github.com:znerd/xmlenc.git</developerConnection>
+    <url>git@github.com:znerd/xmlenc.git</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/znerd/xmlenc/issues</url>
+  </issueManagement>
+
+  <developers>
+    <developer>
+      <id>ernst</id>
+      <name>Ernst de Haan</name>
+      <email>ernst@ernstdehaan.com</email>
+      <url>http://ernstdehaan.com/</url>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>Europe/Amsterdam</timezone>
+      <properties>
+        <picUrl>http://ernstdehaan.com/ernst.jpg</picUrl>
+      </properties>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
