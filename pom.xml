@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.znerd</groupId>
   <artifactId>xmlenc</artifactId>
-  <version>0.53</version>
+  <version>0.54-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>XMLenc</name>
@@ -29,7 +29,7 @@
     <connection>scm:git:git@github.com:znerd/xmlenc.git</connection>
     <developerConnection>scm:git:git@github.com:znerd/xmlenc.git</developerConnection>
     <url>git@github.com:znerd/xmlenc.git</url>
-    <tag>xmlenc-0.53</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
