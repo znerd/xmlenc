@@ -11,8 +11,7 @@ public interface StatefulXMLEventListener extends XMLEventListener {
     /**
      * Returns the current state of this outputter.
      * 
-     * @return
-     *         the current state, cannot be <code>null</code>.
+     * @return the current state, cannot be <code>null</code>.
      */
     @Override
     XMLEventListenerState getState();

@@ -11,11 +11,9 @@ public final class InvalidXMLException extends RuntimeException {
     private static final long serialVersionUID = -7288705590217605965L;
 
     /**
-     * Constructs a new <code>InvalidXMLException</code> with the specified
-     * detail message.
+     * Constructs a new <code>InvalidXMLException</code> with the specified detail message.
      * 
-     * @param message
-     *        the optional detail message, or <code>null</code>.
+     * @param message the optional detail message, or <code>null</code>.
      */
     public InvalidXMLException(String message) {
         super(message);

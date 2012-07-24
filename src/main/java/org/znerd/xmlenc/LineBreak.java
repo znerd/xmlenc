@@ -9,11 +9,9 @@ package org.znerd.xmlenc;
 public final class LineBreak {
 
     /**
-     * Constructs a new <code>LineBreak</code> that consists of the specified
-     * characters.
+     * Constructs a new <code>LineBreak</code> that consists of the specified characters.
      * 
-     * @param lineBreak
-     *        the characters the line break consists of.
+     * @param lineBreak the characters the line break consists of.
      */
     private LineBreak(String lineBreak) {
         _lineBreak = lineBreak;
@@ -21,14 +19,13 @@ public final class LineBreak {
     }
 
     /**
-     * The characters this line break consists of. This field is initialized by
-     * the constructor.
+     * The characters this line break consists of. This field is initialized by the constructor.
      */
     private final String _lineBreak;
 
     /**
-     * A character array containing the characters this line break consists of.
-     * This field is initialized by the constructor.
+     * A character array containing the characters this line break consists of. This field is
+     * initialized by the constructor.
      */
     final char[] _lineBreakChars;
 

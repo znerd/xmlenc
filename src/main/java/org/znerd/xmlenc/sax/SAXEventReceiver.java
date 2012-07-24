@@ -20,10 +20,9 @@ public class SAXEventReceiver extends Object implements ContentHandler {
      * Constructs a new <code>SAXEventReceiver</code> that sends events to the
      * specified <code>XMLEventListener</code>.
      * 
-     * @param eventListener
-     *        the {@link XMLEventListener} that should be used, cannot be <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>eventListener == null</code>.
+     * @param eventListener the {@link XMLEventListener} that should be used, cannot be
+     *        <code>null</code>.
+     * @throws IllegalArgumentException if <code>eventListener == null</code>.
      */
     public SAXEventReceiver(XMLEventListener eventListener) throws IllegalArgumentException {
         if (eventListener == null) {
