@@ -1,6 +1,4 @@
-/*
- * $Id: AllTests.java,v 1.3 2007/08/21 21:50:53 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc.perftests;
 
 import junit.framework.Test;
@@ -8,9 +6,6 @@ import junit.framework.TestSuite;
 
 /**
  * Combination of all performance tests.
- *
- * @version $Revision: 1.3 $ $Date: 2007/08/21 21:50:53 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
 public class AllTests extends TestSuite {
 

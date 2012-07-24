@@ -1,6 +1,4 @@
-/*
- * $Id: XMLCheckerTests.java,v 1.4 2007/08/21 21:50:53 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc.tests;
 
 import org.znerd.xmlenc.InvalidXMLException;
@@ -11,9 +9,6 @@ import junit.framework.TestSuite;
 
 /**
  * Tests on the <code>XMLChecker</code> class.
- *
- * @version $Revision: 1.4 $ $Date: 2007/08/21 21:50:53 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
 public class XMLCheckerTest extends TestCase {
 

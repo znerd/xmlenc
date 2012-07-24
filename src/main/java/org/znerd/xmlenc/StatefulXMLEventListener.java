@@ -1,14 +1,9 @@
-/*
- * $Id: StatefulXMLEventListener.java,v 1.3 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
 /**
  * Stateful <code>XMLEventListener</code>. This interface adds a single
  * {@link #getState()}.
- *
- * @version $Revision: 1.3 $ $Date: 2007/08/21 21:50:52 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  *
  * @since xmlenc 0.32
  */

@@ -1,6 +1,4 @@
-/*
- * $Id: XMLEncoderTests.java,v 1.6 2007/08/21 21:50:53 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc.perftests;
 
 import java.io.FileWriter;
@@ -14,9 +12,6 @@ import junit.framework.TestSuite;
 
 /**
  * Performance tests for class <code>XMLEncoder</code>.
- *
- * @version $Revision: 1.6 $ $Date: 2007/08/21 21:50:53 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
 public class XMLEncoderTests extends TestCase {
 

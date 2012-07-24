@@ -1,6 +1,4 @@
-/*
- * $Id: XMLEncoder.java,v 1.211 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
 import java.io.IOException;
@@ -18,11 +16,6 @@ import java.io.Writer;
  *    <li><code>US-ASCII</code>, with alias <code>ASCII</code>
  *    <li>all <code>ISO-8859</code> encodings
  * </ul>
- *
- * @version $Revision: 1.211 $ $Date: 2007/08/21 21:50:52 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
- * @author Jochen Schwoerer (j.schwoerer [at] web.de)
- * @author Anthony Goubard (<a href="mailto:anthony.goubard@orange-ftgroup">anthony.goubard@orange-ftgroup.com</a>)
  *
  * @since xmlenc 0.1
  */

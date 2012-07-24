@@ -1,13 +1,8 @@
-/*
- * $Id: Library.java,v 1.3 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
 /**
  * Class that represents this <em>xmlenc</em> library.
- *
- * @version $Revision: 1.3 $ $Date: 2007/08/21 21:50:52 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  *
  * @since xmlenc 0.30
  */
@@ -29,7 +24,7 @@ public final class Library extends Object {
     *    never <code>null</code>.
     */
    public static final String getVersion() {
-      return "%%VERSION%%";
+      return "%%VERSION%%"; // FIXME
    }
 
 

@@ -1,14 +1,8 @@
-/*
- * $Id: LineBreak.java,v 1.4 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
 /**
  * Enumeration type for line breaks.
- *
- * @version $Revision: 1.4 $ $Date: 2007/08/21 21:50:52 $
- * @author Jochen Schwoerer (j.schwoerer [at] web.de)
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  *
  * @since xmlenc 0.35
  */

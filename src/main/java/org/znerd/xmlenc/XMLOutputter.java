@@ -1,6 +1,4 @@
-/*
- * $Id: XMLOutputter.java,v 1.119 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
 import java.io.IOException;
@@ -75,10 +73,6 @@ import java.io.Writer;
  * creations. Call {@link #reset()} (with no arguments) when storing an
  * instance in the pool. Use {@link #reset(Writer,String)} (with 2 arguments)
  * to re-initialize the instance after fetching it from the pool.
- *
- * @version $Revision: 1.119 $ $Date: 2007/08/21 21:50:52 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
- * @author Jochen Schwoerer (j.schwoerer [at] web.de)
  *
  * @since xmlenc 0.19
  */

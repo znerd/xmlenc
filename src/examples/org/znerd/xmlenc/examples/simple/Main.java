@@ -1,6 +1,4 @@
-/*
- * $Id: Main.java,v 1.22 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc.examples.simple;
 
 import java.io.IOException;
@@ -10,9 +8,6 @@ import org.znerd.xmlenc.XMLOutputter;
 
 /**
  * Simple example program that shows how to use the <code>XMLOutputter</code>.
- *
- * @version $Revision: 1.22 $ $Date: 2007/08/21 21:50:52 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
 public class Main extends Object {
 

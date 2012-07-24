@@ -1,6 +1,4 @@
-/*
- * $Id: SAXEventReceiver.java,v 1.7 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc.sax;
 
 import java.io.IOException;
@@ -15,9 +13,6 @@ import org.znerd.xmlenc.XMLEventListener;
 /**
  * SAX handler that receives SAX events and transforms them to <em>xmlenc</em>
  * events.
- *
- * @version $Revision: 1.7 $ $Date: 2007/08/21 21:50:52 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  *
  * @since xmlenc 0.31
  */

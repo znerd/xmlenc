@@ -1,6 +1,4 @@
-/*
- * $Id: XMLEventListener.java,v 1.10 2007/08/21 21:50:52 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
 import java.io.IOException;
@@ -183,9 +181,6 @@ import java.io.UnsupportedEncodingException;
  *    <li>S5: {@link #AFTER_ROOT_ELEMENT     AFTER_ROOT_ELEMENT}</li>
  *    <li>S6: {@link #DOCUMENT_ENDED         DOCUMENT_ENDED}</li>
  * </ul>
- *
- * @version $Revision: 1.10 $ $Date: 2007/08/21 21:50:52 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  *
  * @since xmlenc 0.30
  */

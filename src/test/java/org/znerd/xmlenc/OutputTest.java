@@ -1,6 +1,4 @@
-/*
- * $Id: OutputTests.java,v 1.19 2007/08/21 21:50:53 znerd Exp $
- */
+// See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc.tests;
 
 import java.io.IOException;
@@ -22,9 +20,6 @@ import junit.framework.TestSuite;
 /**
  * Output tests. These tests check that the output from the output methods in
  * class <code>XMLOutputter</code> is as expected.
- *
- * @version $Revision: 1.19 $ $Date: 2007/08/21 21:50:53 $
- * @author Ernst de Haan (<a href="mailto:ernst@ernstdehaan.com">ernst@ernstdehaan.com</a>)
  */
 public class OutputTest extends TestCase {
 
