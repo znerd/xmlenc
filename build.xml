@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="US-ASCII" ?>
+<!--
+ -*- mode: Fundamental; tab-width: 4; -*-
+ ex:ts=4
+
+ $Id: build.xml,v 1.159 2005/12/23 11:16:03 znerd Exp $
+-->
+
+<project name="xmlenc" default="all" basedir=".">
+
+	<target name="-junit-task">
+		<available classname="junit.framework.TestListener" property="junit.available" />
+		<fail unless="junit.available" message="JUnit not available" />
+		<taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask" />
+	</target>
+
+	<target name="-checkstyle-task">
+		<available classname="com.puppycrawl.tools.checkstyle.CheckStyleTask" property="checkstyle.available" />
+		<fail unless="checkstyle.available" message="Checkstyle not available" />
+		<taskdef name="checkstyle" classname="com.puppycrawl.tools.checkstyle.CheckStyleTask" />
+	</target>
+
+	<target name="-j2h-task">
+		<available classname="j2h" property="j2h.available" />
+		<fail unless="j2h.available" message="Java2HTML not available" />
+		<taskdef name="java2html" classname="com.java2html.Java2HTMLTask"/>
+	</target>
+
+	<target name="-javamail-avail">
+		<available classname="javax.activation.DataSource" property="jaf.available" />
+		<fail unless="jaf.available" message="Java Activation Framework not available" />
+		<available classname="javax.mail.Message" property="javamail.available" />
+		<fail unless="javamail.available" message="JavaMail not available" />
+		<available classname="com.sun.mail.smtp.SMTPMessage" property="javamail.smtp.available" />
+		<fail unless="javamail.smtp.available" message="JavaMail (SMTP support) not available" />
+	</target>
+
+	<target name="-load-version">
+		<property name="version.file" value=".version.properties" />
+		<property file="${version.file}" />
+		<condition property="version.isset">
+			<and>
+				<isset property="version.major" />
+				<isset property="version.minor" />
+			</and>
+		</condition>
+		<fail unless="version.isset" message="Version must be set in file ${version.file}." />
+		<property name="version.prev" value="${version.prev.major}.${version.prev.minor}" />
+	</target>
+
+	<target name="-determine-version-dev" depends="-load-version" if="version.suffix">
+		<property name="version.real" value="${version.prev}" />
+	</target>
+
+	<target name="-determine-version-nondev" depends="-load-version" unless="version.suffix">
+		<property name="version.real" value="${version}" />
+	</target>
+
+	<target name="-determine-version" depends="-determine-version-dev,-determine-version-nondev" />
+
+	<target name="-load-sfproperties">
+		<property name="sf.file" value="${user.home}/.sourceforge.properties" />
+		<property file="${sf.file}" />
+		<condition property="sf.isset">
+			<and>
+				<isset property="sf.user" />
+				<isset property="sf.password" />
+			</and>
+		</condition>
+	</target>
+
+	<target name="-init-release" depends="-determine-version">
+		<property name="javac.debug"         value="false" />
+		<property name="javac.deprecation"   value="false" />
+		<property name="version"             value="${version.major}.${version.minor}" />
+	</target>
+
+	<target name="-init" depends="-determine-version,-load-sfproperties">
+		<!-- General project properties -->
+		<property name="title"               value="xmlenc" />
+		<property name="name"                value="${ant.project.name}" />
+		<property name="version"             value="${version.major}.${version.minor}${version.suffix}" />
+		<property name="package-tarfile"     value="${name}-${version}.tar" />
+		<property name="package-tgzfile"     value="${name}-${version}.tgz" />
+		<property name="cvs.module"          value="${name}" />
+
+		<!-- Maintainer -->
+		<property name="maintainer.name"      value="Ernst de Haan" />
+		<property name="maintainer.address"   value="wfe.dehaan@gmail.com" />
+
+		<!-- Notification-related properties -->
+		<property name="notification.name"    value="${title} development mailing list" />
+		<property name="notification.address" value="${name}-devel@groups.yahoo.com" />
+
+		<!-- SourceForge-related properties -->
+		<property name="sf.group"            value="64445" />
+		<property name="sf.package"          value="61614" />
+
+		<!-- Website-related properties -->
+		<property name="www.user"            value="${sf.user}" />
+		<property name="www.host"            value="${name}.sourceforge.net" />
+		<property name="www.dir"             value="/home/groups/x/xm/xmlenc/htdocs" />
+		<property name="www.target"          value="${www.user}@${www.host}:${www.dir}" />
+		<property name="www.url"             value="http://${www.host}/" />
+
+		<!-- Java compiler-related properties -->
+		<property name="javac.targetvm"      value="1.3"   />
+		<property name="javac.debug"         value="true"  />
+		<property name="javac.deprecation"   value="true"  />
+		<property name="javac.optimize"      value="false" />
+
+		<!-- Javadoc-related properties -->
+		<property name="javadoc.srcdir.j2se"   value="${java.home}/src" />
+		<property name="javadoc.srcdir.xmlenc" value="build/src/main" />
+	</target>
+
+	<target name="version" depends="-init">
+		<echo message="Java ${java.version}" />
+		<echo message="${ant.version}" />
+		<echo message="${title} ${version} (real: ${version.real})" />
+	</target>
+
+	<target name="-prepare" depends="-init">
+		<mkdir dir="build" />
+	</target>
+
+	<target name="-prepare-classes" depends="-prepare">
+		<mkdir dir="build/classes" />
+	</target>
+
+	<target name="clean" description="Removes all generated files">
+		<delete dir="build" />
+	</target>
+
+	<target name="-prepare-src" depends="-prepare">
+		<mkdir dir="build/src/main" />
+		<copy todir="build/src/main">
+			<fileset dir="src/main" includes="**/*.java,**/package.html" />
+		</copy>
+		<replace dir="build/src/main">
+			<replacefilter token="%%TITLE%%"   value="${title}" />
+			<replacefilter token="%%VERSION%%" value="${version}" />
+		</replace>
+	</target>
+
+	<target name="jar" depends="-prepare-src,-prepare-classes" description="Compiles the Java source code">
+		<mkdir dir="build/classes/main" />
+		<javac
+		srcdir="build/src/main"
+		destdir="build/classes/main"
+		debug="${javac.debug}"
+		deprecation="${javac.deprecation}"
+		optimize="${javac.optimize}"
+		target="${javac.targetvm}" />
+		<manifest file="build/MANIFEST.MF">
+			<section name="${title}">
+				<attribute name="Specification-Title"    value="${title}" />
+				<attribute name="Specification-Version"  value="${version}" />
+				<attribute name="Specification-Vendor"   value="${maintainer.name}"  />
+				<attribute name="Implementation-Title"   value="${title}" />
+				<attribute name="Implementation-Version" value="${version}" />
+				<attribute name="Implementation-Vendor"  value="${maintainer.name}"  />
+			</section>
+		</manifest>
+		<jar
+		jarfile="build/${name}.jar"
+		basedir="build/classes/main"
+		manifest="build/MANIFEST.MF" />
+	</target>
+
+	<target name="upload-jar" depends="jar" description="Uploads the JAR file to the web server">
+		<echo message="Uploading JAR file to ${www.host}" />
+		<exec dir="build/" executable="scp" failonerror="true">
+			<arg value="${name}.jar" />
+			<arg value="${www.target}/${name}-${version}.jar" />
+		</exec>
+	</target>
+
+	<target name="classes-tests" depends="-junit-task,jar" description="Compiles the unit tests">
+		<mkdir dir="build/classes/tests" />
+		<javac destdir="build/classes/tests" includes="**/*.java" debug="true" deprecation="false">
+			<src path="src/tests" />
+			<classpath>
+				<pathelement location="build/${name}.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="do-tests" depends="classes-tests" description="Runs the unit tests">
+		<mkdir dir="build/testresults" />
+		<mkdir dir="build/testresults/xml" />
+		<junit printsummary="withOutAndErr" failureproperty="tests.failed">
+			<formatter type="xml" />
+			<test name="org.znerd.xmlenc.tests.AllTests" todir="build/testresults/xml" outfile="testresults"/>
+			<classpath>
+				<pathelement location="build/classes/tests" />
+				<pathelement location="build/${name}.jar" />
+			</classpath>
+		</junit>
+	</target>
+
+	<target name="testreports" description="Generates the unit test reports">
+		<mkdir dir="build/testresults/html" />
+		<style
+		in="build/testresults/xml/testresults.xml"
+		out="build/testresults/html/index.html"
+		style="src/xslt/tests/index.xslt" />
+		<copy
+		file="src/css/tests/stylesheet.css"
+		todir="build/testresults/html" />
+	</target>
+
+	<target name="tests" depends="do-tests,testreports" description="Runs the unit tests and generates reports" />
+
+	<target name="classes-perftests" depends="-junit-task,jar" description="Compiles the performance tests">
+		<mkdir dir="build/classes/perftests" />
+		<javac destdir="build/classes/perftests" includes="**/*.java" debug="true" deprecation="false">
+			<src path="src/perftests" />
+			<classpath>
+				<pathelement location="build/${name}.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="do-perftests" depends="classes-perftests" description="Runs the performance tests">
+		<mkdir dir="build/perftestresults" />
+		<mkdir dir="build/perftestresults/xml" />
+		<junit printsummary="true" failureproperty="perftests.failed">
+			<formatter type="xml" />
+			<test name="org.znerd.xmlenc.perftests.AllTests" todir="build/perftestresults/xml" outfile="perftestresults"/>
+			<classpath>
+				<pathelement location="build/classes/perftests" />
+				<pathelement location="build/${name}.jar" />
+			</classpath>
+		</junit>
+	</target>
+
+	<target name="perftestreports" description="Generates the performance test reports">
+		<mkdir dir="build/perftestresults/html" />
+		<style
+		in="build/perftestresults/xml/perftestresults.xml"
+		out="build/perftestresults/html/index.html"
+		style="src/xslt/perftests/index.xslt" />
+		<copy
+		file="src/css/tests/stylesheet.css"
+		todir="build/perftestresults/html" />
+	</target>
+
+	<target name="perftests" depends="do-perftests,perftestreports" description="Runs the performance tests and generates reports" />
+
+	<target name="j2h" depends="-j2h-task,-prepare-src,javadoc" description="Generates pretty-printed Java code as HTML">
+		<mkdir dir="build/j2h" />
+		<java2html title="Source X-ref for ${title} ${version}" destination="build/j2h" footer="no">
+			<fileset dir="build/src/main">
+				<include name="**/*.java" />
+			</fileset>
+			<javadoc localref="build/javadoc-private" httpref="http://${www.host}/javadoc-private/${version}" />
+		</java2html>
+	</target>
+
+	<target name="-jdksrc-avail">
+		<available file="${javadoc.srcdir.j2se}" type="dir" property="jdksrc.available" />
+	</target>
+
+	<target name="-javadoc-sourcepath-nojdksrc" depends="-prepare,-jdksrc-avail" unless="jdksrc.available">
+		<property name="javadoc.sourcepath" value="${javadoc.srcdir.xmlenc}" />
+		<echo level="verbose" message="JDK source code not available." />
+	</target>
+
+	<target name="-javadoc-sourcepath-jdksrc" depends="-jdksrc-avail" if="jdksrc.available">
+		<property name="javadoc.sourcepath" value="${javadoc.srcdir.xmlenc}:${javadoc.srcdir.j2se}" />
+		<echo level="verbose" message="JDK source code available." />
+	</target>
+
+	<target name="-javadoc-sourcepath" depends="-javadoc-sourcepath-nojdksrc,-javadoc-sourcepath-jdksrc" />
+
+	<target name="-do-javadoc" depends="-prepare-src,-javadoc-sourcepath">
+		<mkdir dir="${javadoc.destdir}" />
+		<javadoc
+		sourcepath="${javadoc.sourcepath}"
+		destdir="${javadoc.destdir}"
+		version="yes"
+		use="yes"
+		author="yes"
+		private="${javadoc.private}"
+		windowtitle="${javadoc.title}"
+		doctitle="${javadoc.title}"
+		bottom="${javadoc.footer}">
+			<packageset dir="build/src/main" />
+			<link offline="true" packagelistloc="src/package-lists/j2se/" href="http://java.sun.com/j2se/1.3/docs/api" />
+			<link offline="true" packagelistloc="src/package-lists/sax/"  href="http://www.saxproject.org/apidoc/"     />
+		</javadoc>
+		<copy
+		file="src/css/javadoc/style.css"
+		tofile="${javadoc.destdir}/stylesheet.css"
+		overwrite="true" />
+	</target>
+
+	<target name="javadoc" depends="javadoc-public,javadoc-private" description="Generates all Javadoc API documentation" />
+
+	<target name="javadoc-public" depends="-init" description="Generates public Javadoc API documentation">
+		<antcall target="-do-javadoc">
+			<param name="javadoc.private" value="no" />
+			<param name="javadoc.destdir" value="build/javadoc" />
+			<param name="javadoc.title"   value="${title} ${version}" />
+			<param name="javadoc.footer"  value="See &lt;a target=&quot;_top&quot; href='${www.url}'&gt;${www.url}&lt;/a&gt;." />
+		</antcall>
+	</target>
+
+	<target name="javadoc-private" depends="-init" description="Generates private Javadoc API documentation">
+		<antcall target="-do-javadoc">
+			<param name="javadoc.private" value="yes" />
+			<param name="javadoc.destdir" value="build/javadoc-private" />
+			<param name="javadoc.title"   value="${title} ${version}" />
+			<param name="javadoc.footer"  value="See &lt;a target=&quot;_top&quot; href='${www.url}'&gt;${www.url}&lt;/a&gt;.&lt;br /&gt;This Javadoc API documentation set contains private and package private members as well." />
+		</antcall>
+	</target>
+
+	<target name="upload-javadoc" depends="-init,javadoc,javadoc-private" description="Uploads the Javadoc documentation to the webserver">
+		<echo message="Uploading ${title} ${version} API docs to ${www.host}" />
+
+		<echo level="verbose" message="Creating directory ${www.dir}/javadoc/${version} on ${www.host}" />
+		<exec executable="ssh" failonerror="true">
+			<arg value="${www.user}@${www.host}" />
+			<arg value="mkdir -p ${www.dir}/javadoc/${version}" />
+		</exec>
+		<echo level="verbose" message="Copying files to ${www.dir}/javadoc/${version} on ${www.host}" />
+		<exec dir="build/javadoc" executable="scp" failonerror="true">
+			<arg value="-r" />
+			<arg value="." />
+			<arg value="${www.target}/javadoc/${version}/" />
+		</exec>
+
+		<echo level="verbose" message="Creating directory ${www.dir}/javadoc-private/${version} on ${www.host}" />
+		<exec executable="ssh" failonerror="true">
+			<arg value="${www.user}@${www.host}" />
+			<arg value="mkdir -p ${www.dir}/javadoc-private/${version}" />
+		</exec>
+		<echo level="verbose" message="Copying files to ${www.dir}/javadoc-private/${version} on ${www.host}" />
+		<exec dir="build/javadoc-private" executable="scp" failonerror="true">
+			<arg value="-r" />
+			<arg value="." />
+			<arg value="${www.target}/javadoc-private/${version}/" />
+		</exec>
+	</target>
+
+	<target name="-prepare-checkstyle" depends="-checkstyle-task" />
+
+	<target name="checkstyle-text" depends="-prepare-checkstyle" description="Prints checkstyle errors">
+		<checkstyle config="src/config/checkstyle/config.xml" failOnViolation="false">
+			<fileset dir="src/main" includes="**/*.java" />
+			<formatter type="plain" />
+		</checkstyle>
+	</target>
+
+	<target name="checkstyle-xml" depends="-prepare-checkstyle" description="Checks the style of the source code">
+		<mkdir dir="build/checkstyle" />
+		<mkdir dir="build/checkstyle/xml" />
+		<checkstyle config="src/config/checkstyle/config.xml" failOnViolation="false">
+			<fileset dir="src/main" includes="**/*.java" />
+			<formatter type="xml" tofile="build/checkstyle/xml/results.xml"/>
+		</checkstyle>
+	</target>
+
+	<target name="checkstyle-report" description="Generates the checkstyle report">
+		<mkdir dir="build/checkstyle/html" />
+		<style
+		in="build/checkstyle/xml/results.xml"
+		out="build/checkstyle/html/index.html"
+		style="src/xslt/checkstyle/index.xslt" />
+		<copy
+		file="src/css/checkstyle/style.css"
+		tofile="build/checkstyle/html/stylesheet.css" />
+	</target>
+
+	<target name="checkstyle" depends="checkstyle-xml,checkstyle-report" description="Checks the style of the source code" />
+
+	<target name="upload-checkstyle" depends="-init,checkstyle">
+		<echo message="Uploading ${title} ${version} Checkstyle report to ${www.host}" />
+		<echo level="verbose" message="Creating directory ${www.dir}/checkstyle/${version} on ${www.host}" />
+		<exec executable="ssh" failonerror="true">
+			<arg value="${www.user}@${www.host}" />
+			<arg value="mkdir -p ${www.dir}/checkstyle/${version}" />
+		</exec>
+		<exec dir="build/checkstyle/html" executable="scp" failonerror="true">
+			<arg value="-r" />
+			<arg value="." />
+			<arg value="${www.target}/checkstyle/${version}" />
+		</exec>
+	</target>
+
+	<target name="package" depends="javadoc,jar" description="Builds a complete distribution archive">
+		<tar tarfile="build/${package-tarfile}">
+			<tarfileset
+			dir="${basedir}"
+			prefix="${name}-${version}"
+			mode="644">
+				<include name="build.xml"                      />
+				<include name=".version.properties"            />
+				<include name="CHANGES"                        />
+				<include name="COPYRIGHT"                      />
+				<include name="README"                         />
+				<include name="THANKS"                         />
+				<include name="build/javadoc/**/*"             />
+				<include name="build/*.jar"                    />
+				<include name="src/config/**/*"                />
+				<include name="src/css/**/*"                   />
+				<include name="src/main/**/*"                  />
+				<include name="src/package-lists/**/*"         />
+				<include name="src/tests/**/*"                 />
+				<include name="src/xslt/**/*"                  />
+				<include name="depends/**/*"                   />
+			</tarfileset>
+		</tar>
+		<gzip zipfile="build/${package-tgzfile}" src="build/${package-tarfile}" />
+		<delete file="build/${package-tarfile}" />
+	</target>
+
+	<target name="do-upload-package" depends="-init" description="Uploads the package to the web server">
+		<echo message="Uploading ${title} ${version} package to ${www.host}" />
+		<exec dir="build/" executable="scp" failonerror="true">
+			<arg value="${package-tgzfile}" />
+			<arg value="${www.target}" />
+		</exec>
+	</target>
+
+	<target name="upload-package" depends="package,do-upload-package" description="Creates and uploads package to the web server" />
+
+	<target name="upload-j2h" depends="j2h" description="Uploads the j2h documentation to the webserver">
+		<echo message="Uploading Java2HTML documentation to ${www.host}" />
+		<exec executable="ssh" failonerror="true">
+			<arg value="${www.user}@${www.host}" />
+			<arg value="mkdir -p ${www.dir}/j2h/${version}" />
+		</exec>
+		<exec dir="build/j2h" executable="scp" failonerror="true">
+			<arg value="-r" />
+			<arg value="." />
+			<arg value="${www.target}/j2h/${version}/" />
+		</exec>
+	</target>
+
+	<target name="-check-version-suffix" depends="-init">
+		<condition property="version.suffix.set">
+			<equals arg1="${version.suffix}" arg2="-dev" />
+		</condition>
+	</target>
+
+	<target name="-check-release-version" depends="-check-version-suffix" unless="force">
+		<fail unless="version.suffix.set" message="Version suffix is not set to -dev. If you do want to release, please set 'force'." />
+		<propertyfile file="${version.file}" comment=" Version number for ${title}.&#10;">
+			<entry key="version.suffix" operation="=" value="" />
+		</propertyfile>
+		<cvs failonerror="true">
+			<commandline>
+				<argument value="commit" />
+				<argument value="-m" />
+				<argument value="Unmarked -dev." />
+				<argument value="${version.file}" />
+			</commandline>
+		</cvs>
+	</target>
+
+	<target name="-nodiffs-check" depends="clean">
+		<tempfile destdir="${java.io.tmpdir}" prefix="${name}-release-diff." property="diff-file" suffix=".diff" />
+		<cvs failonerror="true" command="diff" output="${diff-file}" quiet="true" />
+		<loadfile srcfile="${diff-file}" property="diff-contents" />
+		<property name="diff-contents" value="" />
+		<echo message="Diff contents: &quot;${diff-contents}&quot;." />
+		<condition property="diff-contents-empty">
+			<equals arg1="${diff-contents}" arg2="" />
+		</condition>
+		<fail unless="diff-contents-empty" message="There are differences with the CVS repository (result of 'cvs diff' is non-empty). See: ${diff-file}" />
+		<delete file="${diff-file}" />
+	</target>
+
+	<target
+	name="-pre-release-checks"
+	depends="-init-release,-check-release-version,-nodiffs-check,tests">
+		<fail if="tests.failed" message="All tests should run" />
+	</target>
+
+	<target
+	name="-prepare-release"
+	depends="-pre-release-checks">
+		<property name="tagname" value="RELEASE_${version.major}_${version.minor}" />
+		<echo message="Tagging ${tagname}" />
+		<cvs failonerror="true" command="tag -F ${tagname}" quiet="true" />
+	</target>
+
+	<target name="upload-changes" depends="-init">
+		<echo message="Uploading ${title} ${version} change log to ${www.host}" />
+		<exec executable="scp" failonerror="true">
+			<arg value="CHANGES" />
+			<arg value="${www.target}/changes-${version}.txt" />
+		</exec>
+	</target>
+
+	<target name="release-notification" depends="-javamail-avail,-init-release,-init">
+		<property name="smtp.host" value="smtp.wanadoo.nl" />
+		<echo level="verbose" message="Sending notification to ${notification.name} via SMTP host ${smtp.host}." />
+		<mail
+		mailhost="${smtp.host}"
+		subject="[ANN] ${title} ${version} released"
+		message="FYI: ${title} ${version} has been released.&#10;&#10;For more information, see:&#10;${www.url}&#10;&#10;Attached is the change log.&#10;&#10;&#10;Kind regards,&#10;&#10;${maintainer.name}">
+			<from    name="${maintainer.name}"   address="${maintainer.address}" />
+			<to      name="${notification.name}" address="${notification.address}" />
+			<replyto name="${notification.name}" address="${notification.address}" />
+			<fileset dir="." includes="CHANGES" />
+		</mail>
+	</target>
+
+	<target name="upload-homepage" depends="-init">
+		<property name="docs.dir" value="../${name}-docs/" />
+		<available property="docs.avail" file="${docs.dir}/build.xml" type="file" />
+		<fail unless="docs.avail" message="Unable to find build.xml in ${docs.dir}. Unable to upload homepage." />
+		<ant dir="../${name}-docs" target="upload-homepage" inheritall="false">
+			<property name="version" value="${version.major}.${version.minor}" />
+		</ant>
+	</target>
+
+	<target
+	name="release"
+	depends="-junit-task,-checkstyle-task,-j2h-task,-javamail-avail,-prepare-release,upload-changes,upload-jar,upload-package,upload-javadoc,upload-checkstyle,upload-j2h,release-notification"
+	description="Performs a release">
+		<propertyfile file="${version.file}" comment=" Version number for ${title}.&#10;">
+			<entry key="version.minor" type="int" operation="+" value="1"    />
+			<entry key="version.suffix"           operation="=" value="-dev" />
+		</propertyfile>
+		<cvs failonerror="true">
+			<commandline>
+				<argument value="commit" />
+				<argument value="-m" />
+				<argument value="Bumped version, marked -dev." />
+				<argument value="${version.file}" />
+			</commandline>
+		</cvs>
+		<antcall target="upload-homepage" />
+		<delete>
+			<fileset dir="build/src" />
+		</delete>
+	</target>
+
+	<target name="all" depends="jar,javadoc" description="Generates everything" />
+
+</project>

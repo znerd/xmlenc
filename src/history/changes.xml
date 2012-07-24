@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+
+<changes>
+	<unreleased>
+		<change>Added method getElementStackCapacity() and
+		setElementStackCapacity(int).</change>
+	</unreleased>
+
+	<release version="0.27">
+		<change>Strings are no longer trimmed anywhere. This changes
+		the behaviour of the dtd(String,String,String) and
+		pi(String,String) methods.</change>
+		<change>Encodings are printed as they are, they are not
+		converted to upper case.</change>
+		<change>The encoding 'ASCII' is recognized as an alias of
+		'US-ASCII'.</change>
+	</release>
+
+	<release version="0.26">
+		<change>XMLOutputter.close() can now only be called when the
+		state is either START_TAG_OPEN or WITHIN_ELEMENT.</change>
+		<change>Sticking all source files in the tar.gz distribution
+		files.</change>
+	</release>
+
+	<release version="0.25">
+		<change>Removed entityRef(String). Was deprecated in
+		0.24.</change>
+		<change>Trying to recover from OutOfMemoryErrors.</change>
+	</release>
+
+	<release version="0.24">
+		<change>Added method setEscaping(boolean) to XMLOutputter.
+		Deprecated entityRef(String).</change>
+		<change>Removed init(Writer,String),
+		setState(XMLOutputter.State) and getDepth() and
+		XMLOutputterStates.INITIAL_STATE. All were
+		deprecated.</change>
+		<change>Added method getVersion() to XMLOutputter. It returns
+		the version of the xmlenc library.</change>
+	</release>
+
+	<release version="0.23">
+		<change>Added constructor
+		XMLOutputter(Writer,encoding).</change>
+		<change>Added reset(Writer,encoding). Deprecated
+		init(Writer,encoding).</change>
+
+		<change>Removed stag(String), etag() and all getInstance()
+		methods.</change>
+	</release>
+
+	<release version="0.22">
+		<change>Small performance improvement in init(Writer,String)
+		and reset() methods.  Instead of creating a java.util.Stack
+		instance (to contain the open elements), the clear() method is
+		called on the existing Stack instance. Also made the field
+		final. This could improve the performance slightly as
+		well.</change>
+		<change>Removed unused state VOID_WITHIN_ELEMENT.</change>
+		<change>Allowing empty CDATA sections and empty
+		comments.</change>
+		<change>Internally using a String array instead of a Stack to
+		keep track of the open elements. This should improve
+		performance.</change>
+		<change>Added method: String[] getElementStack().
+		<change>Added method getElementStackSize() as a replacement
+		for getDepth(). Deprecated getDepth().</change>
+		<change>Added setState(State,String[]) and deprecated
+		setState(State).</change>
+	</release>
+</changes>
