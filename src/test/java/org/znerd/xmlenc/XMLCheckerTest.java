@@ -39,10 +39,6 @@ public class XMLCheckerTest extends TestCase {
         // empty
     }
 
-    private void reset() {
-        // empty
-    }
-
     public void testCheckName() {
         doTestCheckName("", false);
         doTestCheckName(" ", false);
