@@ -9,10 +9,6 @@ import junit.framework.TestSuite;
  */
 public class AllTests extends TestSuite {
 
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
    /**
     * Returns a test suite with all test cases.
     *
@@ -24,11 +20,6 @@ public class AllTests extends TestSuite {
       suite.addTestSuite(XMLEncoderTests.class);
       return suite;
    }
-
-
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
 
    /**
     * Constructs a new <code>AllTests</code> object with the specified name.

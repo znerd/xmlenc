@@ -100,11 +100,6 @@ public class XMLEncoder extends Object {
    // http://www.w3.org/TR/REC-xml
    // http://www.jimprice.com/ascii-0-127.gif
 
-
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
    /**
     * Retrieves an <code>XMLEncoder</code> for the specified encoding. If no
     * suitable instance can be returned, then an exception is thrown.
@@ -126,11 +121,6 @@ public class XMLEncoder extends Object {
    throws IllegalArgumentException, UnsupportedEncodingException {
       return new XMLEncoder(encoding);
    }
-
-
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
 
    /**
     * The first part of a declaration, before the encoding.
@@ -193,10 +183,6 @@ public class XMLEncoder extends Object {
    private static final char[] EQUALS_QUOTE = new char[] { '=', '"' };
 
 
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
-
    /**
     * Constructs a new <code>XMLEncoder</code> instance.
     *
@@ -245,11 +231,6 @@ public class XMLEncoder extends Object {
       _encodingCharArray = encoding.toCharArray();
    }
 
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
    /**
     * The name of the encoding. Cannot be <code>null</code>.
     */
@@ -268,11 +249,6 @@ public class XMLEncoder extends Object {
     * characters.
     */
    private final boolean _sevenBitEncoding;
-
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    /**
     * Returns the encoding.

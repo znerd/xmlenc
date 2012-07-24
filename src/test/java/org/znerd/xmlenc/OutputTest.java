@@ -23,20 +23,7 @@ import junit.framework.TestSuite;
  */
 public class OutputTest extends TestCase {
 
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
-
    private final static String DEFAULT_ENCODING = "UTF-8";
-
-
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
 
    /**
     * Constructs a new <code>OutputTest</code> test suite with the
@@ -49,11 +36,6 @@ public class OutputTest extends TestCase {
       super(name);
    }
 
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
    /**
     * The output destination for the XML outputter.
     */
@@ -63,11 +45,6 @@ public class OutputTest extends TestCase {
     * The XML outputter used in all tests.
     */
    private XMLOutputter _outputter;
-
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    /**
     * Prepares this test set before the tests are executed.

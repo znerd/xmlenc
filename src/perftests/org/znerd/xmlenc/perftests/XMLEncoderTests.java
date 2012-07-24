@@ -15,16 +15,7 @@ import junit.framework.TestSuite;
  */
 public class XMLEncoderTests extends TestCase {
 
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
-
    private static final int ROUNDS = 40000;
-
-
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
 
    /**
     * Returns a test suite with all test cases defined by this class.
@@ -36,11 +27,6 @@ public class XMLEncoderTests extends TestCase {
       return new TestSuite(XMLEncoderTests.class);
    }
 
-
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
-
    /**
     * Constructs a new <code>XMLEncoderTests</code> test suite with the
     * specified name. The name will be passed to the superconstructor.
@@ -51,15 +37,6 @@ public class XMLEncoderTests extends TestCase {
    public XMLEncoderTests(String name) {
       super(name);
    }
-
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    /**
     * Tests the performance of the <code>XMLEncoder</code> in the UTF-8

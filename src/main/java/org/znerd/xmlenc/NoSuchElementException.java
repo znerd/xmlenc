@@ -9,14 +9,6 @@ package org.znerd.xmlenc;
  */
 public final class NoSuchElementException extends RuntimeException {
 
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Constructors
-   //-------------------------------------------------------------------------
-
    /**
     * Constructs a new <code>NoSuchElementException</code> with the specified
     * detail message.
@@ -27,13 +19,4 @@ public final class NoSuchElementException extends RuntimeException {
    public NoSuchElementException(String message) {
       super(message);
    }
-
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 }

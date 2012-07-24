@@ -12,10 +12,6 @@ import junit.framework.TestSuite;
  */
 public class XMLCheckerTest extends TestCase {
 
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
    /**
     * Returns a test suite with all test cases defined by this class.
     *
@@ -25,15 +21,6 @@ public class XMLCheckerTest extends TestCase {
    public static Test suite() {
       return new TestSuite(XMLCheckerTest.class);
    }
-
-
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
 
    /**
     * Constructs a new <code>XMLCheckerTest</code> test suite with the
@@ -45,15 +32,6 @@ public class XMLCheckerTest extends TestCase {
    public XMLCheckerTest(String name) {
       super(name);
    }
-
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    /**
     * Performs setup for the tests.

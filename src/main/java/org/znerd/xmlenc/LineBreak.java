@@ -8,18 +8,6 @@ package org.znerd.xmlenc;
  */
 public final class LineBreak {
 
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Constructors
-   //-------------------------------------------------------------------------
-
    /**
     * Constructs a new <code>LineBreak</code> that consists of the specified
     * characters.
@@ -32,11 +20,6 @@ public final class LineBreak {
       _lineBreakChars = lineBreak.toCharArray();
    }
 
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
    /**
     * The characters this line break consists of. This field is initialized by
     * the constructor.
@@ -48,11 +31,6 @@ public final class LineBreak {
     * This field is initialized by the constructor.
     */
    final char[] _lineBreakChars;
-
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    /**
     * Empty line break. This is equivalent to using no line breaks.
@@ -80,4 +58,4 @@ public final class LineBreak {
    public String toString() {
       return _lineBreak;
    }
-};
+}

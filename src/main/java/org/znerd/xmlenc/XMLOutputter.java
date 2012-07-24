@@ -80,20 +80,11 @@ public class XMLOutputter
 extends Object
 implements StatefulXMLEventListener {
 
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
-
    /**
     * Default indentation. This is the empty string, <code>""</code>, since by
     * default no indentation is performed.
     */
    public static final String DEFAULT_INDENTATION = "";
-
-
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
 
    /**
     * Constructs a new <code>XMLOutputter</code>. This sets the state to
@@ -179,11 +170,6 @@ implements StatefulXMLEventListener {
       reset(out, encoder);
    }
 
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
    /**
     * Flag that indicates whether anything has been output already.
     */
@@ -254,11 +240,6 @@ implements StatefulXMLEventListener {
     * <code>null</code>.
     */
    private String _indentation;
-
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    /**
     * Checks all invariants. This check should be performed at the end of

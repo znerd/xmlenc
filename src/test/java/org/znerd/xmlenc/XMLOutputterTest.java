@@ -16,10 +16,6 @@ import junit.framework.TestSuite;
  */
 public class XMLOutputterTest extends TestCase {
 
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
    /**
     * Returns a test suite with all test cases defined by this class.
     *
@@ -30,17 +26,7 @@ public class XMLOutputterTest extends TestCase {
       return new TestSuite(XMLOutputterTest.class);
    }
 
-
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
-
    private final String DEFAULT_ENCODING = "UTF-8";
-
-
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
 
    /**
     * Constructs a new <code>NumberCentralTest</code> test suite with the
@@ -53,18 +39,8 @@ public class XMLOutputterTest extends TestCase {
       super(name);
    }
 
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
    private StringWriter _stringWriter;
    private XMLOutputter _outputter;
-
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    /**
     * Performs setup for the tests.

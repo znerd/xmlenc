@@ -20,18 +20,6 @@ public class SAXEventReceiver
 extends Object
 implements ContentHandler {
 
-   //-------------------------------------------------------------------------
-   // Class functions
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Class fields
-   //-------------------------------------------------------------------------
-
-   //-------------------------------------------------------------------------
-   // Constructor
-   //-------------------------------------------------------------------------
-
    /**
     * Constructs a new <code>SAXEventReceiver</code> that sends events to the
     * specified <code>XMLEventListener</code>.
@@ -52,20 +40,10 @@ implements ContentHandler {
       _eventListener = eventListener;
    }
 
-
-   //-------------------------------------------------------------------------
-   // Fields
-   //-------------------------------------------------------------------------
-
    /**
     * The <code>XMLOutputter</code> that is used.
     */
    private final XMLEventListener _eventListener;
-
-
-   //-------------------------------------------------------------------------
-   // Methods
-   //-------------------------------------------------------------------------
 
    public void setDocumentLocator(Locator locator) {
       // XXX: What should we do here?
