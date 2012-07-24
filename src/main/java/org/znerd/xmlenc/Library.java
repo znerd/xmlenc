@@ -8,22 +8,24 @@ package org.znerd.xmlenc;
  */
 public final class Library extends Object {
 
+   private static final String VERSION;
+
+   private Library() {
+      // empty
+   }
+
+   static {
+      VERSION = Library.class.getPackage().getImplementationVersion();
+   }
+
    /**
     * Returns the version of the <em>xmlenc</em> library.
     *
     * @return
-    *    the version of this library, for example <code>"%%VERSION%%"</code>,
+    *    the version of this library, for example <code>"1.0"</code>,
     *    never <code>null</code>.
     */
    public static final String getVersion() {
-      return "%%VERSION%%"; // FIXME
-   }
-
-
-   /**
-    * Constructs a new <code>Library</code> object.
-    */
-   private Library() {
-      // empty
+      return VERSION;
    }
 }
