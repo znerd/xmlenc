@@ -9,6 +9,8 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 * Consistently describing XMLenc as "XMLenc: fast low-level stream-based XML
   output library for Java."
 
+* Added section 'Implementation notes' to org.znerd.xmlenc package summary.
+
 * Reformatted the Java source files.
 
 * Fixed the package of the unit tests.
