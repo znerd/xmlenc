@@ -216,19 +216,16 @@ public final class XMLChecker extends Object {
         char lastChar = ch[lastIndex];
 
         // First and last char: single qoute (apostrophe)
-        String otherAllowedChars;
         if (firstChar == '\'') {
             if (lastChar != '\'') {
                 throw new InvalidXMLException("First character is '\\'', but the " + "last character is 0x" + Integer.toHexString(lastChar) + '.');
             }
-            otherAllowedChars = "-()+,./:=?;!*#@$_%";
 
             // First and last char: double qoute character
         } else if (firstChar == '"') {
             if (lastChar != '"') {
                 throw new InvalidXMLException("First character is '\"', but the " + "last character is 0x" + Integer.toHexString(lastChar) + '.');
             }
-            otherAllowedChars = "-'()+,./:=?;!*#@$_%";
 
             // First character is invalid
         } else {
