@@ -6,7 +6,7 @@
   <packaging>jar</packaging>
 
   <name>XMLenc</name>
-  <description>XMLenc, a stream-based XML output library for Java, optimized for performance.</description>
+  <description>XMLenc: fast low-level stream-based XML output library for Java.</description>
   <url>http://github.com/znerd/xmlenc/</url>
 
   <inceptionYear>2003</inceptionYear>

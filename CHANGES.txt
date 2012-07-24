@@ -6,11 +6,18 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * Consistently spelling xmlenc as 'XMLenc'.
 
+* Consistently describing XMLenc as "XMLenc: fast low-level stream-based XML
+  output library for Java."
+
 * Reformatted the Java source files.
 
 * Fixed the package of the unit tests.
 
 * Added serialVersionUID class field to Exception classes.
+
+* Renamed the package.html files to package-info.java.
+
+* Improved the package description of org.znerd.xmlenc.
 
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
