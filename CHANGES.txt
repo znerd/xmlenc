@@ -25,7 +25,7 @@ CHANGES INTRODUCED IN XMLENC 0.54:
   - src/css/javadoc
   - src/css/checkstyle
 
-* Converted XMLOutputterTest from JUnit 3 to JUnit 4.
+* Converted unit tests from JUnit 3 to JUnit 4.
 
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:

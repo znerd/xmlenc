@@ -2,7 +2,6 @@
 package org.znerd.xmlenc;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
@@ -25,11 +24,11 @@ public class XMLOutputterTest {
 
     @Before
     public void setUp() {
-        _outputter = new XMLOutputter();
+        reset();
     }
 
     private void reset() {
-        assertNotNull(_outputter);
+        _outputter = new XMLOutputter();
         _stringWriter = new StringWriter();
         try {
             _outputter.reset(_stringWriter, DEFAULT_ENCODING);
@@ -40,11 +39,12 @@ public class XMLOutputterTest {
 
     @Test
     public void testConstructor() {
-        assertNull(_outputter.getWriter());
-        assertEquals(XMLEventListenerStates.UNINITIALIZED, _outputter.getState());
-        assertEquals(0, _outputter.getElementStackSize());
-        assertEquals(LineBreak.NONE, _outputter.getLineBreak());
-        assertEquals("", _outputter.getIndentation());
+        XMLOutputter x = new XMLOutputter();
+        assertNull(x.getWriter());
+        assertEquals(XMLEventListenerStates.UNINITIALIZED, x.getState());
+        assertEquals(0, x.getElementStackSize());
+        assertEquals(LineBreak.NONE, x.getLineBreak());
+        assertEquals("", x.getIndentation());
     }
 
     @Test

@@ -1,30 +1,24 @@
 // See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Output tests. These tests check that the output from the output methods in
  * class <code>XMLOutputter</code> is as expected.
  */
-public class OutputTest extends TestCase {
+public class OutputTest {
 
     private final static String DEFAULT_ENCODING = "UTF-8";
-
-    /**
-     * Constructs a new <code>OutputTest</code> test suite with the
-     * specified name. The name will be passed to the superconstructor.
-     * 
-     * @param name
-     *        the name for this test suite.
-     */
-    public OutputTest(String name) {
-        super(name);
-    }
 
     /**
      * The output destination for the XML outputter.
@@ -39,8 +33,8 @@ public class OutputTest extends TestCase {
     /**
      * Prepares this test set before the tests are executed.
      */
-    @Override
-    protected void setUp() {
+    @Before
+    public void setUp() {
         _outputter = new XMLOutputter();
     }
 
@@ -63,6 +57,7 @@ public class OutputTest extends TestCase {
      * @throws IOException
      *         in case of an I/O error.
      */
+    @Test
     public void testDeclarationOutput() throws IOException {
         doTestDeclaration("UTF-8");
         doTestDeclaration("utf-8");

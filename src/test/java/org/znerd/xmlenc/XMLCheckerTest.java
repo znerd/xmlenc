@@ -1,44 +1,22 @@
 // See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.fail;
+
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Tests on the <code>XMLChecker</code> class.
  */
-public class XMLCheckerTest extends TestCase {
+public class XMLCheckerTest {
 
-    /**
-     * Returns a test suite with all test cases defined by this class.
-     * 
-     * @return
-     *         the test suite, never <code>null</code>.
-     */
-    public static Test suite() {
-        return new TestSuite(XMLCheckerTest.class);
-    }
-
-    /**
-     * Constructs a new <code>XMLCheckerTest</code> test suite with the
-     * specified name. The name will be passed to the superconstructor.
-     * 
-     * @param name
-     *        the name for this test suite.
-     */
-    public XMLCheckerTest(String name) {
-        super(name);
-    }
-
-    /**
-     * Performs setup for the tests.
-     */
-    @Override
-    protected void setUp() {
+    @Before
+    public void setUp() {
         // empty
     }
 
+    @Test
     public void testCheckName() {
         doTestCheckName("", false);
         doTestCheckName(" ", false);
@@ -61,8 +39,7 @@ public class XMLCheckerTest extends TestCase {
         doTestCheckName("hhh-", true);
     }
 
-    public void doTestCheckName(String name, boolean okay) {
-
+    private void doTestCheckName(String name, boolean okay) {
         final String production = "Name";
 
         try {
