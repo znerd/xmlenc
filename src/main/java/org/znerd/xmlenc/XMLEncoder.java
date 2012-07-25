@@ -24,15 +24,11 @@ public class XMLEncoder extends Object {
      * Retrieves an <code>XMLEncoder</code> for the specified encoding. If no
      * suitable instance can be returned, then an exception is thrown.
      * 
-     * @param encoding
-     *        the name of the encoding, not <code>null</code>.
-     * @return
-     *         an <code>XMLEncoder</code> instance that matches the specified
-     *         encoding, never <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>encoding == null</code>.
-     * @throws UnsupportedEncodingException
-     *         if the specified encoding is not supported.
+     * @param encoding the name of the encoding, not <code>null</code>.
+     * @return an <code>XMLEncoder</code> instance that matches the specified encoding, never
+     *         <code>null</code>.
+     * @throws IllegalArgumentException if <code>encoding == null</code>.
+     * @throws UnsupportedEncodingException if the specified encoding is not supported.
      */
     public static final XMLEncoder getEncoder(String encoding) throws IllegalArgumentException, UnsupportedEncodingException {
         return new XMLEncoder(encoding);
@@ -117,9 +113,8 @@ public class XMLEncoder extends Object {
      *         if <code>encoding == null</code>.
      * @throws UnsupportedEncodingException
      *         if the specified encoding is not supported.
-     * @deprecated
-     *             Deprecated since xmlenc 0.47.
-     *             Use the factory method {@link #getEncoder(String)} instead.
+     * @deprecated Deprecated since XMLenc 0.47. Use the factory method {@link #getEncoder(String)}
+     *             instead.
      */
     @Deprecated
     public XMLEncoder(String encoding) throws IllegalArgumentException, UnsupportedEncodingException {
@@ -185,7 +180,8 @@ public class XMLEncoder extends Object {
      * @param out the character stream to write to, not <code>null</code>.
      * @throws NullPointerException if <code>out == null</code>.
      * @throws IOException if an I/O error occurs.
-     * @deprecated Use {@link #declaration(Writer,char)} instead.
+     * @deprecated Deprecated since XMLenc 0.54. Use {@link #declaration(Writer,char)} instead,
+     *             which also requires the quotation mark character to use.
      */
     @Deprecated
     public void declaration(Writer out) throws NullPointerException, IOException {
@@ -321,9 +317,8 @@ public class XMLEncoder extends Object {
      *         if the specified text contains an invalid character.
      * @throws IOException
      *         if an I/O error occurs.
-     * @deprecated
-     *             Deprecated since xmlenc 0.51.
-     *             Use the text method {@link #text(Writer, char, boolean)} instead.
+     * @deprecated Deprecated since XMLenc 0.51. Use the text method
+     *             {@link #text(Writer, char, boolean)} instead.
      */
     @Deprecated
     public void text(Writer out, char c) throws InvalidXMLException, IOException {
