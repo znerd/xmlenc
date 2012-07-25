@@ -54,8 +54,7 @@ public class OutputTest {
     /**
      * Performs all tests that check that declarations are properly output.
      * 
-     * @throws IOException
-     *         in case of an I/O error.
+     * @throws IOException in case of an I/O error.
      */
     @Test
     public void testDeclarationOutput() throws IOException {
@@ -71,8 +70,7 @@ public class OutputTest {
      * Performs all tests that check that document type definitions are
      * properly output.
      * 
-     * @throws IOException
-     *         in case of an I/O error.
+     * @throws IOException in case of an I/O error.
      */
     public void testDtdOutput() throws IOException {
 
@@ -130,8 +128,7 @@ public class OutputTest {
     /**
      * Performs all tests that check that PCDATA sections are properly output.
      * 
-     * @throws IOException
-     *         in case of an I/O error.
+     * @throws IOException in case of an I/O error.
      */
     public void testPcdataOutput() throws IOException {
 
@@ -181,8 +178,7 @@ public class OutputTest {
     /**
      * Performs all tests that check that attributes are properly output.
      * 
-     * @throws IOException
-     *         in case of an I/O error.
+     * @throws IOException in case of an I/O error.
      */
     public void testAttributeOutput() throws IOException {
         doTestAttribute("UTF-8");
@@ -193,8 +189,7 @@ public class OutputTest {
      * Performs all tests that check that indentation settings cause proper
      * output.
      * 
-     * @throws IOException
-     *         in case of an I/O error.
+     * @throws IOException in case of an I/O error.
      */
     public void testIndentationOutput() throws IOException {
         doTestIndentation(" ");
@@ -211,10 +206,8 @@ public class OutputTest {
     /**
      * Check that declarations are properly output for the specified encoding.
      * 
-     * @param encoding
-     *        the encoding to test, should not be <code>null</code>.
-     * @throws IOException
-     *         in case of an I/O error.
+     * @param encoding the encoding to test, should not be <code>null</code>.
+     * @throws IOException in case of an I/O error.
      */
     private void doTestDeclaration(String encoding) throws IOException {
 
