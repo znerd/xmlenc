@@ -4,6 +4,8 @@ versions of XMLenc.
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.54:
 
+* The quotationMark is now taken into account when outputting the declaration.
+
 * Consistently spelling xmlenc as 'XMLenc'.
 
 * Consistently describing XMLenc as "XMLenc: fast low-level stream-based XML

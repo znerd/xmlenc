@@ -39,24 +39,34 @@ public class XMLEncoder extends Object {
     }
 
     /**
-     * The first part of a declaration, before the encoding.
+     * The first part of a declaration, before the encoding, assuming double quotes.
      */
-    private static final char[] DECLARATION_START = "<?xml version=\"1.0\" encoding=\"".toCharArray();
+    private static final char[] DECLARATION_DOUBLE_QUOTE_START = "<?xml version=\"1.0\" encoding=\"".toCharArray();
+
+    /**
+     * The first part of a declaration, before the encoding, assuming double quotes.
+     */
+    private static final char[] DECLARATION_SINGLE_QUOTE_START = "<?xml version='1.0' encoding='".toCharArray();
 
     /**
      * The length of <code>DECLARATION_START</code>.
      */
-    private static final int DECLARATION_START_LENGTH = DECLARATION_START.length;
+    private static final int DECLARATION_START_LENGTH = DECLARATION_DOUBLE_QUOTE_START.length;
 
     /**
-     * The last part of a declaration, after the encoding.
+     * The last part of a declaration, after the encoding, assuming double quotes.
      */
-    private static final char[] DECLARATION_END = "\"?>".toCharArray();
+    private static final char[] DECLARATION_DOUBLE_QUOTE_END = "\"?>".toCharArray();
+
+    /**
+     * The last part of a declaration, after the encoding, assuming double quotes.
+     */
+    private static final char[] DECLARATION_SINGLE_QUOTE_END = "'?>".toCharArray();
 
     /**
      * The length of <code>DECLARATION_END</code>.
      */
-    private static final int DECLARATION_END_LENGTH = DECLARATION_END.length;
+    private static final int DECLARATION_END_LENGTH = DECLARATION_DOUBLE_QUOTE_END.length;
 
     /**
      * Character array representing the string <code>"&gt;"</code>.
@@ -170,19 +180,41 @@ public class XMLEncoder extends Object {
     }
 
     /**
-     * Writes an XML declaration.
+     * Writes an XML declaration with double quotes.
      * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @throws NullPointerException
-     *         if <code>out == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs.
+     * @param out the character stream to write to, not <code>null</code>.
+     * @throws NullPointerException if <code>out == null</code>.
+     * @throws IOException if an I/O error occurs.
+     * @deprecated Use {@link #declaration(Writer,char)} instead.
      */
+    @Deprecated
     public void declaration(Writer out) throws NullPointerException, IOException {
-        out.write(DECLARATION_START, 0, DECLARATION_START_LENGTH);
+        out.write(DECLARATION_DOUBLE_QUOTE_START, 0, DECLARATION_START_LENGTH);
         out.write(_encodingCharArray);
-        out.write(DECLARATION_END, 0, DECLARATION_END_LENGTH);
+        out.write(DECLARATION_DOUBLE_QUOTE_END, 0, DECLARATION_END_LENGTH);
+    }
+
+    /**
+     * Writes an XML declaration with double quotes.
+     * 
+     * @param out the character stream to write to, not <code>null</code>.
+     * @param quotationMark the quotationMark to use, either <code>'\''</code> or <code>'"'</code>.
+     * @throws IllegalArgumentException if
+     *         <code>quotationMark != '\'' &amp;&amp; quotationMark != '"'</code>
+     * @throws NullPointerException if <code>out == null</code>.
+     * @throws IOException if an I/O error occurs.
+     * @since XMLenc 0.54
+     */
+    public void declaration(Writer out, char quotationMark) throws IllegalArgumentException, NullPointerException, IOException {
+        if (quotationMark == '"') {
+            out.write(DECLARATION_DOUBLE_QUOTE_START, 0, DECLARATION_START_LENGTH);
+            out.write(_encodingCharArray);
+            out.write(DECLARATION_DOUBLE_QUOTE_END, 0, DECLARATION_END_LENGTH);
+        } else if (quotationMark == '\'') {
+            out.write(DECLARATION_SINGLE_QUOTE_START, 0, DECLARATION_START_LENGTH);
+            out.write(_encodingCharArray);
+            out.write(DECLARATION_SINGLE_QUOTE_END, 0, DECLARATION_END_LENGTH);
+        }
     }
 
     /**

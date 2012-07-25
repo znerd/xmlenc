@@ -715,7 +715,7 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
         _state = XMLEventListenerStates.ERROR_STATE;
 
         // Write the output
-        _encoder.declaration(_out);
+        _encoder.declaration(_out, _quotationMark);
 
         // Change the state
         _state = XMLEventListenerStates.BEFORE_DTD_DECLARATION;
