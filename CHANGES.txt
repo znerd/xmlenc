@@ -6,6 +6,8 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * The quotationMark is now taken into account when outputting the declaration.
 
+* Improved and simplified the declaration output in XMLEncoder class.
+
 * Consistently spelling xmlenc as 'XMLenc'.
 
 * Consistently describing XMLenc as "XMLenc: fast low-level stream-based XML
@@ -17,7 +19,7 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * Fixed the package of the unit tests.
 
-* Added serialVersionUID class field to Exception classes.
+* Added missing serialVersionUID class field to each Exception class.
 
 * Renamed the package.html files to package-info.java.
 

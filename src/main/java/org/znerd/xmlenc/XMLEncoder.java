@@ -35,36 +35,6 @@ public class XMLEncoder extends Object {
     }
 
     /**
-     * The first part of a declaration, before the encoding, assuming double quotes.
-     */
-    private static final char[] DECLARATION_DOUBLE_QUOTE_START = "<?xml version=\"1.0\" encoding=\"".toCharArray();
-
-    /**
-     * The first part of a declaration, before the encoding, assuming double quotes.
-     */
-    private static final char[] DECLARATION_SINGLE_QUOTE_START = "<?xml version='1.0' encoding='".toCharArray();
-
-    /**
-     * The length of <code>DECLARATION_START</code>.
-     */
-    private static final int DECLARATION_START_LENGTH = DECLARATION_DOUBLE_QUOTE_START.length;
-
-    /**
-     * The last part of a declaration, after the encoding, assuming double quotes.
-     */
-    private static final char[] DECLARATION_DOUBLE_QUOTE_END = "\"?>".toCharArray();
-
-    /**
-     * The last part of a declaration, after the encoding, assuming double quotes.
-     */
-    private static final char[] DECLARATION_SINGLE_QUOTE_END = "'?>".toCharArray();
-
-    /**
-     * The length of <code>DECLARATION_END</code>.
-     */
-    private static final int DECLARATION_END_LENGTH = DECLARATION_DOUBLE_QUOTE_END.length;
-
-    /**
      * Character array representing the string <code>"&gt;"</code>.
      */
     private static final char[] ESC_GREATER_THAN = new char[] { '&', 'g', 't', ';' };
@@ -124,8 +94,7 @@ public class XMLEncoder extends Object {
             throw new IllegalArgumentException("encoding == null");
         }
 
-        // Uppercase encoding to compare it with supported encodings in a
-        // case-insensitive manner
+        // Uppercase encoding to compare it with supported encodings in a case-insensitive manner
         String ucEncoding = encoding.toUpperCase();
 
         // Check if the encoding supports all Unicode characters
@@ -143,7 +112,8 @@ public class XMLEncoder extends Object {
 
         // Store encoding literally as passed
         _encoding = encoding;
-        _encodingCharArray = encoding.toCharArray();
+        _declarationDoubleQuotes = ("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>").toCharArray();
+        _declarationSingleQuotes = ("<?xml version='1.0' encoding='" + encoding + "'?>").toCharArray();
     }
 
     /**
@@ -151,10 +121,9 @@ public class XMLEncoder extends Object {
      */
     private final String _encoding;
 
-    /**
-     * The name of the encoding as a character array. Cannot be <code>null</code>.
-     */
-    private final char[] _encodingCharArray;
+    private final char[] _declarationDoubleQuotes;
+
+    private final char[] _declarationSingleQuotes;
 
     /**
      * Flag that indicates whether the encoding is based on the ISO 646
@@ -185,9 +154,7 @@ public class XMLEncoder extends Object {
      */
     @Deprecated
     public void declaration(Writer out) throws NullPointerException, IOException {
-        out.write(DECLARATION_DOUBLE_QUOTE_START, 0, DECLARATION_START_LENGTH);
-        out.write(_encodingCharArray);
-        out.write(DECLARATION_DOUBLE_QUOTE_END, 0, DECLARATION_END_LENGTH);
+        out.write(_declarationDoubleQuotes);
     }
 
     /**
@@ -203,13 +170,9 @@ public class XMLEncoder extends Object {
      */
     public void declaration(Writer out, char quotationMark) throws IllegalArgumentException, NullPointerException, IOException {
         if (quotationMark == '"') {
-            out.write(DECLARATION_DOUBLE_QUOTE_START, 0, DECLARATION_START_LENGTH);
-            out.write(_encodingCharArray);
-            out.write(DECLARATION_DOUBLE_QUOTE_END, 0, DECLARATION_END_LENGTH);
+            out.write(_declarationDoubleQuotes);
         } else if (quotationMark == '\'') {
-            out.write(DECLARATION_SINGLE_QUOTE_START, 0, DECLARATION_START_LENGTH);
-            out.write(_encodingCharArray);
-            out.write(DECLARATION_SINGLE_QUOTE_END, 0, DECLARATION_END_LENGTH);
+            out.write(_declarationSingleQuotes);
         }
     }
 
