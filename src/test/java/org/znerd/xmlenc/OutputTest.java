@@ -10,7 +10,6 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Output tests. These tests check that the output from the output methods in
@@ -49,21 +48,6 @@ public class OutputTest {
         } catch (UnsupportedEncodingException uee) {
             fail("The default encoding, " + DEFAULT_ENCODING + " is not supported.");
         }
-    }
-
-    /**
-     * Performs all tests that check that declarations are properly output.
-     * 
-     * @throws IOException in case of an I/O error.
-     */
-    @Test
-    public void testDeclarationOutput() throws IOException {
-        doTestDeclaration("UTF-8");
-        doTestDeclaration("utf-8");
-        doTestDeclaration("ISO-8859-1");
-        doTestDeclaration("iso-8859-6");
-        doTestDeclaration("ISo-8859-11");
-        doTestDeclaration("US-ASCII");
     }
 
     /**
@@ -201,37 +185,6 @@ public class OutputTest {
         doTestIndentation(" \t ");
         doTestIndentation("\t ");
         doTestIndentation("\t \t");
-    }
-
-    /**
-     * Check that declarations are properly output for the specified encoding.
-     * 
-     * @param encoding the encoding to test, should not be <code>null</code>.
-     * @throws IOException in case of an I/O error.
-     */
-    private void doTestDeclaration(String encoding) throws IOException {
-
-        reset();
-
-        // Reset the outputter with the specified encoding
-        _outputter.reset(_stringWriter, encoding);
-
-        // Write the declaration
-        _outputter.declaration();
-
-        // Get the result as a String
-        String s = _stringWriter.toString();
-
-        // The result cannot be null
-        assertNotNull(s);
-
-        // There are 2 possible outputs
-        String possibility1 = "<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>";
-        String possibility2 = "<?xml version='1.0' encoding='" + encoding + "'?>";
-
-        if (!s.equals(possibility1) && !s.equals(possibility2)) {
-            fail("Expected declaration() to output either `" + possibility1 + "' or `" + possibility2 + "'.");
-        }
     }
 
     private void doTestDtd(String name, String publicID, String systemID) throws IOException {
