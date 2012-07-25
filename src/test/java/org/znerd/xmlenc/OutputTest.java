@@ -10,6 +10,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Output tests. These tests check that the output from the output methods in
@@ -56,6 +57,7 @@ public class OutputTest {
      * 
      * @throws IOException in case of an I/O error.
      */
+    @Test
     public void testDtdOutput() throws IOException {
 
         final String type1 = "html";
@@ -114,6 +116,7 @@ public class OutputTest {
      * 
      * @throws IOException in case of an I/O error.
      */
+    @Test
     public void testPcdataOutput() throws IOException {
 
         // Test with escaping enabled
@@ -164,6 +167,7 @@ public class OutputTest {
      * 
      * @throws IOException in case of an I/O error.
      */
+    @Test
     public void testAttributeOutput() throws IOException {
         doTestAttribute("UTF-8");
         doTestAttribute("US-ASCII");
@@ -175,6 +179,7 @@ public class OutputTest {
      * 
      * @throws IOException in case of an I/O error.
      */
+    @Test
     public void testIndentationOutput() throws IOException {
         doTestIndentation(" ");
         doTestIndentation("  ");
