@@ -33,6 +33,10 @@ CHANGES INTRODUCED IN XMLENC 0.54:
   - Converted unit tests from JUnit 3 to JUnit 4.
   - Split OutputTest class into several smaller test classes.
 
+* Upgraded Maven plugin versions.
+
+* Changed source/target Java version from 1.6 to 1.8.
+
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
 
