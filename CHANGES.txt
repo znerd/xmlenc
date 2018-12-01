@@ -37,6 +37,8 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 
 * Changed source/target Java version from 1.6 to 1.8.
 
+* Added configuration for CircleCI v2.
+
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
 
