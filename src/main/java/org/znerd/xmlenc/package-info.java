@@ -10,21 +10,21 @@
  * generates the following XML output:</p>
  *
  * <blockquote><pre>&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
- *&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+ * &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
  *
- *&lt;html lang="en"&gt;
- *&lt;head&gt;&lt;title&gt;Example document&lt;/title&gt;&lt;/head&gt;&lt;body class="SummaryPage"&gt;
- *&lt;h1&gt;Example document&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</pre></blockquote>
+ * &lt;html lang="en"&gt;
+ * &lt;head&gt;&lt;title&gt;Example document&lt;/title&gt;&lt;/head&gt;&lt;body class="SummaryPage"&gt;
+ * &lt;h1&gt;Example document&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</pre></blockquote>
  *
  * <p>This XML document can be produced using the specified code:</p>
  *
  * <blockquote><pre>import java.io.IOException;
- *import java.io.OutputStreamWriter;
- *import java.io.Writer;
- *import org.znerd.xmlenc.XMLOutputter;
+ * import java.io.OutputStreamWriter;
+ * import java.io.Writer;
+ * import org.znerd.xmlenc.XMLOutputter;
  *
- *public class Main {
-
+ * public class Main {
+ *
  *    private static final String ENCODING = "ISO-8859-1";
  *
  *    public final static void main(String[] args) throws IOException {
@@ -55,59 +55,59 @@
  *        outputter.endDocument(); // closes: h1, body and html
  *        outputter.getWriter().flush();
  *    }
- *}</pre></blockquote>
+ * }</pre></blockquote>
  *
  * <h3>Implementation Notes</h3>
- * 
+ *
  * Different Unicode characters need to be treated differently. Within attribute values, the following ranges are identified:
  *
  * <table>
  * <thead>
- *    <tr><th>ID</th><th>Decimal range</th><th>Categorization</th><th>Escaping</th>
+ * <tr><th>ID</th><th>Decimal range</th><th>Categorization</th><th>Escaping</th>
  * </thead>
  * <tbody>
- *    <tr><td>A</td><td>0-8</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
- *    <tr><td>B</td><td>9-10</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>C</td><td>11-12</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
- *    <tr><td>D</td><td>13</td><td>Normal character</td><td>Never needed</td></tr>
- *    <tr><td>E</td><td>14-31</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
- *    <tr><td>F</td><td>32-33</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>G</td><td>34</td><td>Quote (")</td><td>If quotation mark</td></tr>
- *    <tr><td>H</td><td>35-37</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>I</td><td>38</td><td>Ampersand (&amp;)</td><td>If escapeAmpersands=true</td></tr>
- *    <tr><td>J</td><td>39</td><td>Apostrophe (')</td><td>If quotation mark</td></tr>
- *    <tr><td>K</td><td>40-59</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>L</td><td>60</td><td>Less than (&lt;)</td><td>Always</td></tr>
- *    <tr><td>M</td><td>61</td><td>Normal character</td><td>Never needed</td></tr>
- *    <tr><td>N</td><td>62</td><td>Greater than (>)</td><td>Always</td></tr>
- *    <tr><td>O</td><td>63-127</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>P</td><td>128+</td><td>Normal characters</td><td>If encoding is ASCII</td></tr>
+ * <tr><td>A</td><td>0-8</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
+ * <tr><td>B</td><td>9-10</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>C</td><td>11-12</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
+ * <tr><td>D</td><td>13</td><td>Normal character</td><td>Never needed</td></tr>
+ * <tr><td>E</td><td>14-31</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
+ * <tr><td>F</td><td>32-33</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>G</td><td>34</td><td>Quote (")</td><td>If quotation mark</td></tr>
+ * <tr><td>H</td><td>35-37</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>I</td><td>38</td><td>Ampersand (&amp;)</td><td>If escapeAmpersands=true</td></tr>
+ * <tr><td>J</td><td>39</td><td>Apostrophe (')</td><td>If quotation mark</td></tr>
+ * <tr><td>K</td><td>40-59</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>L</td><td>60</td><td>Less than (&lt;)</td><td>Always</td></tr>
+ * <tr><td>M</td><td>61</td><td>Normal character</td><td>Never needed</td></tr>
+ * <tr><td>N</td><td>62</td><td>Greater than (>)</td><td>Always</td></tr>
+ * <tr><td>O</td><td>63-127</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>P</td><td>128+</td><td>Normal characters</td><td>If encoding is ASCII</td></tr>
  * </tbody>
  * </table>
  *
  * <p>Outside attribute values, these ranges changes slightly:
- * 
+ *
  * <table>
  * <thead>
- *    <tr><th>ID</th><th>Decimal range</th><th>Categorization</th><th>Escaping</th>
+ * <tr><th>ID</th><th>Decimal range</th><th>Categorization</th><th>Escaping</th>
  * </thead>
  * <tbody>
- *    <tr><td>A</td><td>0-8</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
- *    <tr><td>B</td><td>9-10</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>C</td><td>11-12</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
- *    <tr><td>D</td><td>13</td><td>Normal character</td><td>Never needed</td></tr>
- *    <tr><td>E</td><td>14-31</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
- *    <tr><td>FGH</td><td>32-37</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>I</td><td>38</td><td>Ampersand (&amp;)</td><td>If escapeAmpersands=true</td></tr>
- *    <tr><td>JK</td><td>39-59</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>L</td><td>60</td><td>Less than (&lt;)</td><td>Always</td></tr>
- *    <tr><td>M</td><td>61</td><td>Normal character</td><td>Never needed</td></tr>
- *    <tr><td>N</td><td>62</td><td>Greater than (>)</td><td>Always</td></tr>
- *    <tr><td>O</td><td>63-127</td><td>Normal characters</td><td>Never needed</td></tr>
- *    <tr><td>P</td><td>128+</td><td>Normal characters</td><td>If encoding is ASCII</td></tr>
+ * <tr><td>A</td><td>0-8</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
+ * <tr><td>B</td><td>9-10</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>C</td><td>11-12</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
+ * <tr><td>D</td><td>13</td><td>Normal character</td><td>Never needed</td></tr>
+ * <tr><td>E</td><td>14-31</td><td>Control characters</td><td>N/A - Not allowed in XML 1.0</td></tr>
+ * <tr><td>FGH</td><td>32-37</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>I</td><td>38</td><td>Ampersand (&amp;)</td><td>If escapeAmpersands=true</td></tr>
+ * <tr><td>JK</td><td>39-59</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>L</td><td>60</td><td>Less than (&lt;)</td><td>Always</td></tr>
+ * <tr><td>M</td><td>61</td><td>Normal character</td><td>Never needed</td></tr>
+ * <tr><td>N</td><td>62</td><td>Greater than (>)</td><td>Always</td></tr>
+ * <tr><td>O</td><td>63-127</td><td>Normal characters</td><td>Never needed</td></tr>
+ * <tr><td>P</td><td>128+</td><td>Normal characters</td><td>If encoding is ASCII</td></tr>
  * </tbody>
  * </table>
- * 
+ *
  * <p>The following characters are expected to be encountered the most often:
  * <ol>
  * <li>32 Space (part of range F)

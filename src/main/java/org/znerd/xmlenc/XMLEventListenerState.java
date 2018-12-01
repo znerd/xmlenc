@@ -3,16 +3,15 @@ package org.znerd.xmlenc;
 
 /**
  * State for an XML event listener.
- * 
+ *
  * @since XMLenc 0.30
  */
 public final class XMLEventListenerState extends Object {
 
     /**
      * Creates a new <code>State</code>.
-     * 
-     * @param name
-     *        the name of the state, should not be <code>null</code>.
+     *
+     * @param name the name of the state, should not be <code>null</code>.
      */
     XMLEventListenerState(String name) {
         _name = name;

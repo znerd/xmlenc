@@ -48,9 +48,9 @@ import java.io.Writer;
  * or relatively slow or blocking output streams.
  * <p />
  * Instances of this class can be cached in a pool to reduce object creations. Call {@link #reset()}
- * (with no arguments) when storing an instance in the pool. Use {@link #reset(Writer,String)} (with
+ * (with no arguments) when storing an instance in the pool. Use {@link #reset(Writer, String)} (with
  * 2 arguments) to re-initialize the instance after fetching it from the pool.
- * 
+ *
  * @since XMLenc 0.19
  */
 public class XMLOutputter extends Object implements StatefulXMLEventListener {
@@ -79,18 +79,13 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * encoding. This sets the state to {@link #BEFORE_XML_DECLARATION}.
      * <p />
      * The encoding will be stored exactly as passed, leaving the case intact.
-     * 
-     * @param out
-     *        the output stream to write to, not <code>null</code>.
-     * @param encoding
-     *        the encoding, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #UNINITIALIZED} &amp;&amp; getState() !=
-     *         {@link #AFTER_ROOT_ELEMENT} &amp;&amp; getState() != {@link #ERROR_STATE}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>out == null || encoding == null</code>.
-     * @throws UnsupportedEncodingException
-     *         if the specified encoding is not supported.
+     *
+     * @param out      the output stream to write to, not <code>null</code>.
+     * @param encoding the encoding, not <code>null</code>.
+     * @throws IllegalStateException        if <code>getState() != {@link #UNINITIALIZED} &amp;&amp; getState() !=
+     *                                      {@link #AFTER_ROOT_ELEMENT} &amp;&amp; getState() != {@link #ERROR_STATE}</code>.
+     * @throws IllegalArgumentException     if <code>out == null || encoding == null</code>.
+     * @throws UnsupportedEncodingException if the specified encoding is not supported.
      */
     public XMLOutputter(Writer out, String encoding) throws IllegalStateException, IllegalArgumentException, UnsupportedEncodingException {
 
@@ -103,19 +98,14 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
     /**
      * Constructs a new <code>XMLOutputter</code> for the specified <code>Writer</code> and
      * <code>encoder</code>. This sets the state to {@link #BEFORE_XML_DECLARATION}.
-     * 
-     * @param out
-     *        the output stream to write to, not <code>null</code>.
-     * @param encoder
-     *        the encoder, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #UNINITIALIZED} &amp;&amp;
-     *             getState() != {@link #AFTER_ROOT_ELEMENT} &amp;&amp;
-     *             getState() != {@link #ERROR_STATE}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>out == null || encoder == null</code>.
-     * @throws UnsupportedEncodingException
-     *         if the specified encoding is not supported.
+     *
+     * @param out     the output stream to write to, not <code>null</code>.
+     * @param encoder the encoder, not <code>null</code>.
+     * @throws IllegalStateException        if <code>getState() != {@link #UNINITIALIZED} &amp;&amp;
+     *                                      getState() != {@link #AFTER_ROOT_ELEMENT} &amp;&amp;
+     *                                      getState() != {@link #ERROR_STATE}</code>.
+     * @throws IllegalArgumentException     if <code>out == null || encoder == null</code>.
+     * @throws UnsupportedEncodingException if the specified encoding is not supported.
      */
     public XMLOutputter(Writer out, XMLEncoder encoder) throws IllegalStateException, IllegalArgumentException, UnsupportedEncodingException {
 
@@ -189,9 +179,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
     /**
      * Checks all invariants. This check should be performed at the end of
      * every method that changes the internal state of this object.
-     * 
-     * @throws Error
-     *         if the state of this <code>XMLOutputter</code> is invalid.
+     *
+     * @throws Error if the state of this <code>XMLOutputter</code> is invalid.
      */
     private final void checkInvariants() throws Error {
 
@@ -208,9 +197,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Writes the indentation to the output stream.
-     * 
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @throws IOException if an I/O error occurs.
      */
     private final void writeIndentation() throws IOException {
 
@@ -225,10 +213,9 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Returns the output stream this outputter uses.
-     * 
-     * @return
-     *         the output stream of this encoding, only <code>null</code> if and
-     *         only if the state is {@link #UNINITIALIZED}.
+     *
+     * @return the output stream of this encoding, only <code>null</code> if and
+     * only if the state is {@link #UNINITIALIZED}.
      */
     public final Writer getWriter() {
         return _out;
@@ -236,10 +223,9 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Returns the encoding of this outputter.
-     * 
-     * @return
-     *         the encoding used by this outputter, only <code>null</code> if and
-     *         only if the state is {@link #UNINITIALIZED}.
+     *
+     * @return the encoding used by this outputter, only <code>null</code> if and
+     * only if the state is {@link #UNINITIALIZED}.
      */
     public final String getEncoding() {
         if (_encoder == null) {
@@ -274,11 +260,9 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Resets this <code>XMLOutputter</code> and configures it for the
      * specified output stream. This sets the state to {@link #BEFORE_XML_DECLARATION} and clears
      * the stack of open elements.
-     * 
-     * @param out
-     *        the new output stream, cannot be <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>out == null</code>.
+     *
+     * @param out the new output stream, cannot be <code>null</code>.
+     * @throws IllegalArgumentException if <code>out == null</code>.
      */
     private final void reset(Writer out) throws IllegalArgumentException {
 
@@ -303,15 +287,11 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Resets this <code>XMLOutputter</code> and configures it for the
      * specified output stream and encoding. This resets the state to
      * {@link #BEFORE_XML_DECLARATION} and clears the stack of open elements.
-     * 
-     * @param out
-     *        the output stream to write to, not <code>null</code>.
-     * @param encoding
-     *        the encoding, not <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>out == null || encoding == null</code>.
-     * @throws UnsupportedEncodingException
-     *         if the specified encoding is not supported.
+     *
+     * @param out      the output stream to write to, not <code>null</code>.
+     * @param encoding the encoding, not <code>null</code>.
+     * @throws IllegalArgumentException     if <code>out == null || encoding == null</code>.
+     * @throws UnsupportedEncodingException if the specified encoding is not supported.
      */
     public final void reset(Writer out, String encoding) throws IllegalArgumentException, UnsupportedEncodingException {
 
@@ -333,15 +313,11 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Resets this <code>XMLOutputter</code> and configures it for the
      * specified output stream and encoder. This resets the state to {@link #BEFORE_XML_DECLARATION}
      * and clears the stack of open elements.
-     * 
-     * @param out
-     *        the output stream to write to, not <code>null</code>.
-     * @param encoder
-     *        the encoder, not <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>out == null || encoder == null</code>.
-     * @throws UnsupportedEncodingException
-     *         if the specified encoding is not supported.
+     *
+     * @param out     the output stream to write to, not <code>null</code>.
+     * @param encoder the encoder, not <code>null</code>.
+     * @throws IllegalArgumentException     if <code>out == null || encoder == null</code>.
+     * @throws UnsupportedEncodingException if the specified encoding is not supported.
      */
     public final void reset(Writer out, XMLEncoder encoder) throws IllegalArgumentException, UnsupportedEncodingException {
 
@@ -367,21 +343,18 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * {@link #reset()}.
      * <p />
      * Caution: This method can be used to let this class generate invalid XML.
-     * 
-     * @param newState
-     *        the new state, not <code>null</code>.
-     * @param newElementStack
-     *        the new element stack, if <code>newState == START_TAG_OPEN
-     *    || newState == WITHIN_ELEMENT</code> then it should be
-     *        non-<code>null</code> and containing no <code>null</code> elements,
-     *        otherwise it must be <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>newState == null
-     *          || (newState == {@link #START_TAG_OPEN} &amp;&amp; newElementStack == null) ||
-     *         (newState == {@link #WITHIN_ELEMENT} &amp;&amp; newElementStack == null) || (newState
-     *         != {@link #START_TAG_OPEN} &amp;&amp; newState != {@link #WITHIN_ELEMENT} &amp;&amp;
-     *         newElementStack != null) || newElementStack[<i>n</i>] == null</code> (where
-     *         <code>0 &lt;= <i>n</i> &lt; newElementStack.length</code>).
+     *
+     * @param newState        the new state, not <code>null</code>.
+     * @param newElementStack the new element stack, if <code>newState == START_TAG_OPEN
+     *                        || newState == WITHIN_ELEMENT</code> then it should be
+     *                        non-<code>null</code> and containing no <code>null</code> elements,
+     *                        otherwise it must be <code>null</code>.
+     * @throws IllegalArgumentException if <code>newState == null
+     *                                  || (newState == {@link #START_TAG_OPEN} &amp;&amp; newElementStack == null) ||
+     *                                  (newState == {@link #WITHIN_ELEMENT} &amp;&amp; newElementStack == null) || (newState
+     *                                  != {@link #START_TAG_OPEN} &amp;&amp; newState != {@link #WITHIN_ELEMENT} &amp;&amp;
+     *                                  newElementStack != null) || newElementStack[<i>n</i>] == null</code> (where
+     *                                  <code>0 &lt;= <i>n</i> &lt; newElementStack.length</code>).
      * @since XMLenc 0.22
      */
     @Override
@@ -428,9 +401,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Returns the current state of this outputter.
-     * 
-     * @return
-     *         the current state, cannot be <code>null</code>.
+     *
+     * @return the current state, cannot be <code>null</code>.
      */
     @Override
     public final XMLEventListenerState getState() {
@@ -441,12 +413,11 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Checks if escaping is currently enabled. If escaping is enabled, then
      * all ampersand characters (<code>'&amp;'</code>) are replaced by the
      * character entity reference <code>"&amp;amp;"</code>. This affects
-     * PCDATA string printing ({@link #pcdata(String)} and {@link #pcdata(char[],int,int)}) and
+     * PCDATA string printing ({@link #pcdata(String)} and {@link #pcdata(char[], int, int)}) and
      * attribute value printing
-     * ({@link #attribute(String,String)}).
-     * 
-     * @return
-     *         <code>true</code> if escaping is enabled, <code>false</code> otherwise.
+     * ({@link #attribute(String, String)}).
+     *
+     * @return <code>true</code> if escaping is enabled, <code>false</code> otherwise.
      */
     public final boolean isEscaping() {
         return _escapeAmpersands;
@@ -454,14 +425,13 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Sets if ampersands should be escaped. This affects PCDATA string
-     * printing ({@link #pcdata(String)} and {@link #pcdata(char[],int,int)}) and attribute value
+     * printing ({@link #pcdata(String)} and {@link #pcdata(char[], int, int)}) and attribute value
      * printing
-     * ({@link #attribute(String,String)}).
+     * ({@link #attribute(String, String)}).
      * <p />
      * If ampersands are not escaped, then entity references can be printed.
-     * 
-     * @param escapeAmpersands
-     *        <code>true</code> if ampersands should be escaped, <code>false</code> otherwise.
+     *
+     * @param escapeAmpersands <code>true</code> if ampersands should be escaped, <code>false</code> otherwise.
      * @since XMLenc 0.24
      */
     public final void setEscaping(boolean escapeAmpersands) {
@@ -475,11 +445,10 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Returns a copy of the element stack. The returned array will be a new
      * array. The size of the array will be equal to the element stack size
      * (see {@link #getElementStackSize()}.
-     * 
-     * @return
-     *         a newly constructed array that contains all the element types
-     *         currently on the element stack, or <code>null</code> if there are no
-     *         elements on the stack.
+     *
+     * @return a newly constructed array that contains all the element types
+     * currently on the element stack, or <code>null</code> if there are no
+     * elements on the stack.
      * @since XMLenc 0.22
      */
     public final String[] getElementStack() {
@@ -494,9 +463,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Returns the current depth of open elements.
-     * 
-     * @return
-     *         the open element depth, always &gt;= 0.
+     *
+     * @return the open element depth, always &gt;= 0.
      * @since XMLenc 0.22
      */
     public final int getElementStackSize() {
@@ -505,9 +473,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Returns the current capacity for the stack of open elements.
-     * 
-     * @return
-     *         the open element stack capacity, always &gt;= {@link #getElementStackSize()}.
+     *
+     * @return the open element stack capacity, always &gt;= {@link #getElementStackSize()}.
      * @since XMLenc 0.28
      */
     public final int getElementStackCapacity() {
@@ -517,14 +484,11 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
     /**
      * Sets the capacity for the stack of open elements. The new capacity must
      * at least allow the stack to contain the current open elements.
-     * 
-     * @param newCapacity
-     *        the new capacity, &gt;= {@link #getElementStackSize()}.
-     * @throws IllegalArgumentException
-     *         if <code>newCapacity &lt; {@link #getElementStackSize()}</code>.
-     * @throws OutOfMemoryError
-     *         if a new array cannot be allocated; this object will still be usable,
-     *         but the capacity will remain unchanged.
+     *
+     * @param newCapacity the new capacity, &gt;= {@link #getElementStackSize()}.
+     * @throws IllegalArgumentException if <code>newCapacity &lt; {@link #getElementStackSize()}</code>.
+     * @throws OutOfMemoryError         if a new array cannot be allocated; this object will still be usable,
+     *                                  but the capacity will remain unchanged.
      */
     public final void setElementStackCapacity(int newCapacity) throws IllegalArgumentException, OutOfMemoryError {
 
@@ -554,12 +518,10 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * double quote character.
      * <p />
      * The default quotation mark character is <code>'"'</code>.
-     * 
-     * @param c
-     *        the character to put around attribute values, either <code>'\''</code> or
-     *        <code>'"'</code>.
-     * @throws IllegalArgumentException
-     *         if <code>c != '\'' &amp;&amp; c != '"'</code>.
+     *
+     * @param c the character to put around attribute values, either <code>'\''</code> or
+     *          <code>'"'</code>.
+     * @throws IllegalArgumentException if <code>c != '\'' &amp;&amp; c != '"'</code>.
      */
     public final void setQuotationMark(char c) throws IllegalArgumentException {
 
@@ -581,10 +543,9 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * start and end of an attribute value.
      * <p />
      * The default quotation mark character is <code>'"'</code>.
-     * 
-     * @return
-     *         the character to put around attribute values, either <code>'\''</code> or
-     *         <code>'"'</code>.
+     *
+     * @return the character to put around attribute values, either <code>'\''</code> or
+     * <code>'"'</code>.
      */
     public final char getQuotationMark() {
         return _quotationMark;
@@ -594,10 +555,9 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Sets the type of line break to use. If the line break is set to <code>LineBreak.NONE</code>,
      * then the indentation is reset to an empty
      * string.
-     * 
-     * @param lineBreak
-     *        the line break to use; specifying <code>null</code> as the argument
-     *        is equivalent to specifying {@link LineBreak#NONE}.
+     *
+     * @param lineBreak the line break to use; specifying <code>null</code> as the argument
+     *                  is equivalent to specifying {@link LineBreak#NONE}.
      */
     public final void setLineBreak(LineBreak lineBreak) {
 
@@ -618,9 +578,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Returns the currently used line break.
-     * 
-     * @return
-     *         the currently used line break, never <code>null</code>.
+     *
+     * @return the currently used line break, never <code>null</code>.
      */
     public final LineBreak getLineBreak() {
         return _lineBreak;
@@ -631,15 +590,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * prior to calling this method.
      * <p>
      * Only space and tab characters are allowed for the indentation.
-     * 
-     * @param indentation
-     *        the character string used for indentation, or <code>null</code> if
-     *        {@link #DEFAULT_INDENTATION the default indentation} should be used.
-     * @throws IllegalStateException
-     *         if <code>{@link #getLineBreak()} == LineBreak.NONE</code>.
-     * @throws IllegalArgumentException
-     *         if <code>indentation<code> contains characters that are neither a
-     *    space nor a tab.
+     *
+     * @param indentation the character string used for indentation, or <code>null</code> if
+     *                    {@link #DEFAULT_INDENTATION the default indentation} should be used.
+     * @throws IllegalStateException    if <code>{@link #getLineBreak()} == LineBreak.NONE</code>.
+     * @throws IllegalArgumentException if <code>indentation<code> contains characters that are neither a
+     *                                  space nor a tab.
      */
     public final void setIndentation(String indentation) throws IllegalStateException {
 
@@ -668,9 +624,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Returns the string currently used for indentation.
-     * 
-     * @return
-     *         the character string used for indentation, never <code>null</code>.
+     *
+     * @return the character string used for indentation, never <code>null</code>.
      */
     public final String getIndentation() {
         return _indentation;
@@ -680,9 +635,8 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Closes an open start tag.
      * <p>
      * TODO: Document why this is in a separate method.
-     * 
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @throws IOException if an I/O error occurs.
      */
     private void closeStartTag() throws IOException {
         _out.write('>');
@@ -696,11 +650,9 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * If the encoding is set to <code>"ISO-8859-1"</code>, then this method will produce the
      * following output: <blockquote><code>&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</code>
      * </blockquote>
-     * 
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION}</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @throws IllegalStateException if <code>getState() != {@link #BEFORE_XML_DECLARATION}</code>.
+     * @throws IOException           if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void declaration() throws IllegalStateException, IOException {
@@ -743,33 +695,26 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <blockquote>
      * <code>&lt;!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</code>
      * </blockquote>
-     * 
-     * @param name
-     *        the name of the document type, not <code>null</code>.
-     * @param publicID
-     *        the public identifier, can be <code>null</code>, but if not, then it
-     *        must match the
-     *        <a href="http://www.w3.org/TR/2000/REC-xml-20001006#NT-PubidLiteral">
-     *        <em>PubidLiteral</em> production</a>
-     *        in the XML 1.0 Specification, when quoted.
-     * @param systemID
-     *        the system identifier, can be <code>null</code>, but if not, then
-     *        it must match the
-     *        <a href="http://www.w3.org/TR/2000/REC-xml-20001006#NT-SystemLiteral">
-     *        <em>SystemLiteral</em> production</a>
-     *        in the XML 1.0 Specification, when quoted.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
-     *         {@link #BEFORE_DTD_DECLARATION}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null ||
-     *          (publicID != null &amp;&amp; systemID == null)</code>.
-     * @throws InvalidXMLException
-     *         if the specified name does not match the
-     *         <a href="http://www.w3.org/TR/REC-xml#NT-Name"><em>Name</em> production</a>
-     *         (see {@link XMLChecker#checkName(String)}).
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name     the name of the document type, not <code>null</code>.
+     * @param publicID the public identifier, can be <code>null</code>, but if not, then it
+     *                 must match the
+     *                 <a href="http://www.w3.org/TR/2000/REC-xml-20001006#NT-PubidLiteral">
+     *                 <em>PubidLiteral</em> production</a>
+     *                 in the XML 1.0 Specification, when quoted.
+     * @param systemID the system identifier, can be <code>null</code>, but if not, then
+     *                 it must match the
+     *                 <a href="http://www.w3.org/TR/2000/REC-xml-20001006#NT-SystemLiteral">
+     *                 <em>SystemLiteral</em> production</a>
+     *                 in the XML 1.0 Specification, when quoted.
+     * @throws IllegalStateException    if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
+     *                                  {@link #BEFORE_DTD_DECLARATION}</code>.
+     * @throws IllegalArgumentException if <code>name == null ||
+     *                                  (publicID != null &amp;&amp; systemID == null)</code>.
+     * @throws InvalidXMLException      if the specified name does not match the
+     *                                  <a href="http://www.w3.org/TR/REC-xml#NT-Name"><em>Name</em> production</a>
+     *                                  (see {@link XMLChecker#checkName(String)}).
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void dtd(String name, String publicID, String systemID) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException {
@@ -836,19 +781,15 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Writes an element start tag. The element type name will be stored in the
      * internal element stack. If necessary, the capacity of this stack will be
      * extended.
-     * 
-     * @param type
-     *        the type of the tag to start, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp;
-     *             getState() != {@link #BEFORE_DTD_DECLARATION} &amp;&amp;
-     *             getState() != {@link #BEFORE_ROOT_ELEMENT} &amp;&amp;
-     *             getState() != {@link #START_TAG_OPEN} &amp;&amp;
-     *             getState() != {@link #WITHIN_ELEMENT}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>type == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param type the type of the tag to start, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp;
+     *                                  getState() != {@link #BEFORE_DTD_DECLARATION} &amp;&amp;
+     *                                  getState() != {@link #BEFORE_ROOT_ELEMENT} &amp;&amp;
+     *                                  getState() != {@link #START_TAG_OPEN} &amp;&amp;
+     *                                  getState() != {@link #WITHIN_ELEMENT}</code>.
+     * @throws IllegalArgumentException if <code>type == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void startTag(String type) throws IllegalStateException, IllegalArgumentException, IOException {
@@ -912,17 +853,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null || value == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null || value == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void attribute(String name, String value) throws IllegalStateException, IllegalArgumentException, IOException {
@@ -962,17 +898,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, boolean value) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, value ? "true" : "false");
@@ -984,17 +915,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, byte value) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, Byte.toString(value));
@@ -1006,17 +932,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, short value) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, Short.toString(value));
@@ -1028,17 +949,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, int value) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, Integer.toString(value));
@@ -1050,17 +966,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, long value) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, Long.toString(value));
@@ -1072,17 +983,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, float value) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, Float.toString(value));
@@ -1094,17 +1000,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, double value) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, Double.toString(value));
@@ -1116,17 +1017,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * The attribute value is surrounded by the quotation mark character (see
      * {@link #getQuotationMark()}).
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param c
-     *        the value of the attribute, a single character.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name the name of the attribute, not <code>null</code>.
+     * @param c    the value of the attribute, a single character.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void attribute(String name, char c) throws IllegalStateException, IllegalArgumentException, IOException {
         attribute(name, Character.toString(c));
@@ -1134,12 +1030,10 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Writes the end tag for the element on top of the stack.
-     * 
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
-     *             getState() != {@link #WITHIN_ELEMENT}</code>
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @throws IllegalStateException if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
+     *                               getState() != {@link #WITHIN_ELEMENT}</code>
+     * @throws IOException           if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void endTag() throws IllegalStateException, IOException {
@@ -1186,18 +1080,13 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
     /**
      * Writes end tags for elements on the stack until (and including) an
      * element that matches the specified name.
-     * 
-     * @param type
-     *        the type of the tag to end, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
-     *             getState() != {@link #WITHIN_ELEMENT}</code>
-     * @throws IllegalArgumentException
-     *         if <code>type == null</code>.
-     * @throws NoSuchElementException
-     *         if an element of the specified type could not be found on the stack.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param type the type of the tag to end, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
+     *                                  getState() != {@link #WITHIN_ELEMENT}</code>
+     * @throws IllegalArgumentException if <code>type == null</code>.
+     * @throws NoSuchElementException   if an element of the specified type could not be found on the stack.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      * @since XMLenc 0.53
      */
     public final void endTag(String type) throws IllegalStateException, NoSuchElementException, IOException {
@@ -1253,19 +1142,15 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * Writes an empty tag. This is equivalent to calling:
      * <blockquote><code>startTag(type);
      * <br/>endTag();</code></blockquote>
-     * 
-     * @param type
-     *        the type of the tag to start, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp;
-     *             getState() != {@link #BEFORE_DTD_DECLARATION} &amp;&amp;
-     *             getState() != {@link #BEFORE_ROOT_ELEMENT} &amp;&amp;
-     *             getState() != {@link #START_TAG_OPEN} &amp;&amp;
-     *             getState() != {@link #WITHIN_ELEMENT}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>type == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param type the type of the tag to start, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp;
+     *                                  getState() != {@link #BEFORE_DTD_DECLARATION} &amp;&amp;
+     *                                  getState() != {@link #BEFORE_ROOT_ELEMENT} &amp;&amp;
+     *                                  getState() != {@link #START_TAG_OPEN} &amp;&amp;
+     *                                  getState() != {@link #WITHIN_ELEMENT}</code>.
+     * @throws IllegalArgumentException if <code>type == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      * @since XMLenc 0.53
      */
     public final void emptyTag(String type) throws IllegalStateException, IllegalArgumentException, IOException {
@@ -1275,18 +1160,13 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Writes the specified <code>String</code> as PCDATA.
-     * 
-     * @param text
-     *        the PCDATA text to be written, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
-     *             getState() != {@link #WITHIN_ELEMENT}</code>
-     * @throws IllegalArgumentException
-     *         if <code>text == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param text the PCDATA text to be written, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
+     *                                  getState() != {@link #WITHIN_ELEMENT}</code>
+     * @throws IllegalArgumentException if <code>text == null</code>.
+     * @throws InvalidXMLException      if the specified text contains an invalid character.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void pcdata(String text) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException {
@@ -1321,28 +1201,20 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
 
     /**
      * Writes the specified character array as PCDATA.
-     * 
-     * @param ch
-     *        the character array containing the text to be written, not <code>null</code>.
-     * @param start
-     *        the start index in the array, must be &gt;= 0 and it must be &lt;
-     *        <code>ch.length</code>.
-     * @param length
-     *        the number of characters to read from the array, must be &gt; 0.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
-     *             getState() != {@link #WITHIN_ELEMENT}</code>
-     * @throws IllegalArgumentException
-     *         if <code>ch     ==    null
-     *          || start  &lt;  0
-     *          || start  &gt;= ch.length
-     *          || length &lt;  0</code>.
-     * @throws IndexOutOfBoundsException
-     *         if <code>start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param ch     the character array containing the text to be written, not <code>null</code>.
+     * @param start  the start index in the array, must be &gt;= 0 and it must be &lt;
+     *               <code>ch.length</code>.
+     * @param length the number of characters to read from the array, must be &gt; 0.
+     * @throws IllegalStateException     if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp;
+     *                                   getState() != {@link #WITHIN_ELEMENT}</code>
+     * @throws IllegalArgumentException  if <code>ch     ==    null
+     *                                   || start  &lt;  0
+     *                                   || start  &gt;= ch.length
+     *                                   || length &lt;  0</code>.
+     * @throws IndexOutOfBoundsException if <code>start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified text contains an invalid character.
+     * @throws IOException               if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void pcdata(char[] ch, int start, int length) throws IllegalStateException, IllegalArgumentException, IndexOutOfBoundsException, InvalidXMLException, IOException {
@@ -1387,21 +1259,16 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise if the state is {@link #START_TAG_OPEN} then it
      * will be set to {@link #WITHIN_ELEMENT}, otherwise the state will not be changed.
-     * 
-     * @param whitespace
-     *        the ignorable whitespace to be written, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
-     *         {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
-     *         &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
-     *         {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>whitespace == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified character string contains a character that is
-     *         invalid as whitespace.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param whitespace the ignorable whitespace to be written, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
+     *                                  {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
+     *                                  &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
+     *                                  {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
+     * @throws IllegalArgumentException if <code>whitespace == null</code>.
+     * @throws InvalidXMLException      if the specified character string contains a character that is
+     *                                  invalid as whitespace.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void whitespace(String whitespace) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException {
@@ -1452,31 +1319,23 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise if the state is {@link #START_TAG_OPEN} then it
      * will be set to {@link #WITHIN_ELEMENT}, otherwise the state will not be changed.
-     * 
-     * @param ch
-     *        the character array containing the text to be written, not <code>null</code>.
-     * @param start
-     *        the start index in the array, must be &gt;= 0 and it must be &lt;
-     *        <code>ch.length</code>.
-     * @param length
-     *        the number of characters to read from the array, must be &gt; 0.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
-     *         {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
-     *         &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
-     *         {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>ch     ==    null
-     *          || start  &lt;  0
-     *          || start  &gt;= ch.length
-     *          || length &lt;  0</code>.
-     * @throws IndexOutOfBoundsException
-     *         if <code>start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException
-     *         if the specified character string contains a character that is
-     *         invalid as whitespace.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param ch     the character array containing the text to be written, not <code>null</code>.
+     * @param start  the start index in the array, must be &gt;= 0 and it must be &lt;
+     *               <code>ch.length</code>.
+     * @param length the number of characters to read from the array, must be &gt; 0.
+     * @throws IllegalStateException     if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
+     *                                   {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
+     *                                   &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
+     *                                   {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
+     * @throws IllegalArgumentException  if <code>ch     ==    null
+     *                                   || start  &lt;  0
+     *                                   || start  &gt;= ch.length
+     *                                   || length &lt;  0</code>.
+     * @throws IndexOutOfBoundsException if <code>start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified character string contains a character that is
+     *                                   invalid as whitespace.
+     * @throws IOException               if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void whitespace(char[] ch, int start, int length) throws IllegalStateException, IllegalArgumentException, IndexOutOfBoundsException, InvalidXMLException, IOException {
@@ -1528,20 +1387,15 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise if the state is {@link #START_TAG_OPEN} then it
      * will be set to {@link #WITHIN_ELEMENT}, otherwise the state will not be changed.
-     * 
-     * @param text
-     *        the text for the comment be written, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
-     *         {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
-     *         &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
-     *         {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>text == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param text the text for the comment be written, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
+     *                                  {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
+     *                                  &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
+     *                                  {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
+     * @throws IllegalArgumentException if <code>text == null</code>.
+     * @throws InvalidXMLException      if the specified text contains an invalid character.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void comment(String text) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException {
@@ -1603,22 +1457,17 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise the state will not be changed.
-     * 
-     * @param target
-     *        an identification of the application at which the instruction is
-     *        targeted, not <code>null</code>.
-     * @param instruction
-     *        the instruction, can be <code>null</code>, which is equivalent to an
-     *        empty string.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
-     *         {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
-     *         &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
-     *         {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>target == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param target      an identification of the application at which the instruction is
+     *                    targeted, not <code>null</code>.
+     * @param instruction the instruction, can be <code>null</code>, which is equivalent to an
+     *                    empty string.
+     * @throws IllegalStateException    if <code>getState() != {@link #BEFORE_XML_DECLARATION} &amp;&amp; getState() !=
+     *                                  {@link #BEFORE_DTD_DECLARATION} &amp;&amp; getState() != {@link #BEFORE_ROOT_ELEMENT}
+     *                                  &amp;&amp; getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
+     *                                  {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
+     * @throws IllegalArgumentException if <code>target == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void pi(String target, String instruction) throws IllegalStateException, IllegalArgumentException, IOException {
@@ -1680,16 +1529,12 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * If the specified string contains characters that cannot be printed in this encoding, then the
      * result is undefined.
-     * 
-     * @param text
-     *        the contents of the CDATA section, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
-     *         {@link #WITHIN_ELEMENT}</code>
-     * @throws IllegalArgumentException
-     *         if <code>text == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param text the contents of the CDATA section, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
+     *                                  {@link #WITHIN_ELEMENT}</code>
+     * @throws IllegalArgumentException if <code>text == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void cdata(String text) throws IllegalStateException, IllegalArgumentException, IOException {
@@ -1731,12 +1576,10 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * method can be called.
      * <p />
      * If you would like to flush the output stream as well, call {@link #endDocument()} instead.
-     * 
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
-     *         {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @throws IllegalStateException if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
+     *                               {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>
+     * @throws IOException           if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     public final void close() throws IllegalStateException, IOException {
 
@@ -1760,12 +1603,10 @@ public class XMLOutputter extends Object implements StatefulXMLEventListener {
      * <p />
      * After calling this method, the state is changed to {@link #DOCUMENT_ENDED}, so that no more
      * output can be written until this outputter is reset.
-     * 
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
-     *         {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @throws IllegalStateException if <code>getState() != {@link #START_TAG_OPEN} &amp;&amp; getState() !=
+     *                               {@link #WITHIN_ELEMENT} &amp;&amp; getState() != {@link #AFTER_ROOT_ELEMENT}</code>.
+     * @throws IOException           if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     @Override
     public final void endDocument() throws IllegalStateException, IOException {

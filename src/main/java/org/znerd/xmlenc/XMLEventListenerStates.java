@@ -3,7 +3,7 @@ package org.znerd.xmlenc;
 
 /**
  * All <code>XMLEventListenerState</code>s.
- * 
+ *
  * @since XMLenc 0.31
  */
 public interface XMLEventListenerStates {
@@ -20,10 +20,10 @@ public interface XMLEventListenerStates {
      * In this state the following event notifications are valid:
      * <ul>
      * <li>XML declaration ({@link XMLEventListener#declaration()})</li>
-     * <li>DTD declaration ({@link XMLEventListener#dtd(String,String,String)})</li>
+     * <li>DTD declaration ({@link XMLEventListener#dtd(String, String, String)})</li>
      * <li>white space ({@link XMLEventListener#whitespace(String)})</li>
      * <li>comment ({@link XMLEventListener#comment(String)})</li>
-     * <li>processing instruction ({@link XMLEventListener#pi(String,String)})</li>
+     * <li>processing instruction ({@link XMLEventListener#pi(String, String)})</li>
      * <li>start tag ({@link XMLEventListener#startTag(String)})</li>
      * </ul>
      */
@@ -35,10 +35,10 @@ public interface XMLEventListenerStates {
      * <p />
      * In this state the following event notifications are valid:
      * <ul>
-     * <li>DTD declaration ({@link XMLEventListener#dtd(String,String,String)})</li>
+     * <li>DTD declaration ({@link XMLEventListener#dtd(String, String, String)})</li>
      * <li>white space ({@link XMLEventListener#whitespace(String)})</li>
      * <li>comment ({@link XMLEventListener#comment(String)})</li>
-     * <li>processing instruction ({@link XMLEventListener#pi(String,String)})</li>
+     * <li>processing instruction ({@link XMLEventListener#pi(String, String)})</li>
      * <li>start tag ({@link XMLEventListener#startTag(String)})</li>
      * </ul>
      */
@@ -46,14 +46,14 @@ public interface XMLEventListenerStates {
 
     /**
      * State after DTD declaration but before the root element. This
-     * state is reached right after a {@link XMLEventListener#dtd(String,String,String)} event
+     * state is reached right after a {@link XMLEventListener#dtd(String, String, String)} event
      * notification.
      * <p />
      * In this state the following event notifications are valid:
      * <ul>
      * <li>white space ({@link XMLEventListener#whitespace(String)})</li>
      * <li>comment ({@link XMLEventListener#comment(String)})</li>
-     * <li>processing instruction ({@link XMLEventListener#pi(String,String)})</li>
+     * <li>processing instruction ({@link XMLEventListener#pi(String, String)})</li>
      * <li>start tag ({@link XMLEventListener#startTag(String)})</li>
      * </ul>
      */
@@ -67,8 +67,8 @@ public interface XMLEventListenerStates {
      * <ul>
      * <li>white space ({@link XMLEventListener#whitespace(String)})</li>
      * <li>comment ({@link XMLEventListener#comment(String)})</li>
-     * <li>processing instruction ({@link XMLEventListener#pi(String,String)})</li>
-     * <li>attribute ({@link XMLEventListener#attribute(String,String)})</li>
+     * <li>processing instruction ({@link XMLEventListener#pi(String, String)})</li>
+     * <li>attribute ({@link XMLEventListener#attribute(String, String)})</li>
      * <li>another start tag ({@link XMLEventListener#startTag(String)})</li>
      * <li>end tag ({@link XMLEventListener#endTag()})</li>
      * </ul>
@@ -82,7 +82,7 @@ public interface XMLEventListenerStates {
      * <ul>
      * <li>white space ({@link XMLEventListener#whitespace(String)})</li>
      * <li>comment ({@link XMLEventListener#comment(String)})</li>
-     * <li>processing instruction ({@link XMLEventListener#pi(String,String)})</li>
+     * <li>processing instruction ({@link XMLEventListener#pi(String, String)})</li>
      * <li>start tag ({@link XMLEventListener#startTag(String)})</li>
      * <li>end tag ({@link XMLEventListener#endTag()})</li>
      * </ul>
@@ -96,7 +96,7 @@ public interface XMLEventListenerStates {
      * <ul>
      * <li>whitespace ({@link XMLEventListener#whitespace(String)})</li>
      * <li>comment ({@link XMLEventListener#comment(String)})</li>
-     * <li>processing instruction ({@link XMLEventListener#pi(String,String)})</li>
+     * <li>processing instruction ({@link XMLEventListener#pi(String, String)})</li>
      * </ul>
      */
     static final XMLEventListenerState AFTER_ROOT_ELEMENT = new XMLEventListenerState("AFTER_ROOT_ELEMENT");

@@ -1,17 +1,17 @@
 // See the COPYRIGHT.txt file for copyright and license information
 package org.znerd.xmlenc.sax;
 
-import java.io.IOException;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.znerd.xmlenc.XMLEventListener;
 
+import java.io.IOException;
+
 /**
  * SAX handler that receives SAX events and transforms them to <em>xmlenc</em> events.
- * 
+ *
  * @since XMLenc 0.31
  */
 public class SAXEventReceiver extends Object implements ContentHandler {
@@ -19,9 +19,9 @@ public class SAXEventReceiver extends Object implements ContentHandler {
     /**
      * Constructs a new <code>SAXEventReceiver</code> that sends events to the
      * specified <code>XMLEventListener</code>.
-     * 
+     *
      * @param eventListener the {@link XMLEventListener} that should be used, cannot be
-     *        <code>null</code>.
+     *                      <code>null</code>.
      * @throws IllegalArgumentException if <code>eventListener == null</code>.
      */
     public SAXEventReceiver(XMLEventListener eventListener) throws IllegalArgumentException {

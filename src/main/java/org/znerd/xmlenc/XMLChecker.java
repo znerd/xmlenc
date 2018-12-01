@@ -3,7 +3,7 @@ package org.znerd.xmlenc;
 
 /**
  * Utility class that provides XML checking functionality.
- * 
+ *
  * @since XMLenc 0.41
  */
 public final class XMLChecker extends Object {
@@ -11,11 +11,11 @@ public final class XMLChecker extends Object {
     /**
      * Checks if the specified string matches the <em>S</em> (white space) production. See: <a
      * href="http://www.w3.org/TR/REC-xml#NT-S">Definition of S</a>.
-     * 
+     *
      * @param s the character string to check, cannot be <code>null</code>.
      * @throws NullPointerException if <code>s == null</code>.
-     * @throws InvalidXMLException if the specified character string does not match the <em>S</em>
-     *         production.
+     * @throws InvalidXMLException  if the specified character string does not match the <em>S</em>
+     *                              production.
      */
     public static final void checkS(String s) throws NullPointerException {
         checkS(s.toCharArray(), 0, s.length());
@@ -24,17 +24,17 @@ public final class XMLChecker extends Object {
     /**
      * Checks if the specified part of a character array matches the <em>S</em> (white space)
      * production. See: <a href="http://www.w3.org/TR/REC-xml#NT-S">Definition of S</a>.
-     * 
-     * @param ch the character array that contains the characters to be checked, cannot be
-     *        <code>null</code>.
-     * @param start the start index into <code>ch</code>, must be &gt;= 0.
+     *
+     * @param ch     the character array that contains the characters to be checked, cannot be
+     *               <code>null</code>.
+     * @param start  the start index into <code>ch</code>, must be &gt;= 0.
      * @param length the number of characters to take from <code>ch</code>, starting at the
-     *        <code>start</code> index.
-     * @throws NullPointerException if <code>ch == null</code>.
+     *               <code>start</code> index.
+     * @throws NullPointerException      if <code>ch == null</code>.
      * @throws IndexOutOfBoundsException if
-     *         <code>start &lt; 0 || start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException if the specified character string does not match the <em>S</em>
-     *         production.
+     *                                   <code>start &lt; 0 || start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified character string does not match the <em>S</em>
+     *                                   production.
      */
     public static final void checkS(char[] ch, int start, int length) throws NullPointerException, IndexOutOfBoundsException, InvalidXMLException {
 
@@ -51,11 +51,11 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified string matches the <em>Name</em> production. See: <a
      * href="http://www.w3.org/TR/REC-xml#NT-Name">Definition of Name</a>.
-     * 
+     *
      * @param s the character string to check, cannot be <code>null</code>.
-     * @throws NullPointerException if <code>s == null</code>.
      * @return <code>true</code> if the {@link String} matches the production, or <code>false</code>
-     *         otherwise.
+     * otherwise.
+     * @throws NullPointerException if <code>s == null</code>.
      */
     public static final boolean isName(String s) throws NullPointerException {
         try {
@@ -69,11 +69,11 @@ public final class XMLChecker extends Object {
     /**
      * Checks if the specified string matches the <em>Name</em> production. See: <a
      * href="http://www.w3.org/TR/REC-xml#NT-Name">Definition of Name</a>.
-     * 
+     *
      * @param s the character string to check, cannot be <code>null</code>.
      * @throws NullPointerException if <code>s == null</code>.
-     * @throws InvalidXMLException if the specified character string does not match the
-     *         <em>Name</em> production.
+     * @throws InvalidXMLException  if the specified character string does not match the
+     *                              <em>Name</em> production.
      */
     public static final void checkName(String s) throws NullPointerException, InvalidXMLException {
         checkName(s.toCharArray(), 0, s.length());
@@ -82,17 +82,17 @@ public final class XMLChecker extends Object {
     /**
      * Checks if the specified part of a character array matches the <em>Name</em> production. See:
      * <a href="http://www.w3.org/TR/REC-xml#NT-Name">Definition of Name</a>.
-     * 
-     * @param ch the character array that contains the characters to be checked, cannot be
-     *        <code>null</code>.
-     * @param start the start index into <code>ch</code>, must be &gt;= 0.
+     *
+     * @param ch     the character array that contains the characters to be checked, cannot be
+     *               <code>null</code>.
+     * @param start  the start index into <code>ch</code>, must be &gt;= 0.
      * @param length the number of characters to take from <code>ch</code>, starting at the
-     *        <code>start</code> index.
-     * @throws NullPointerException if <code>ch == null</code>.
+     *               <code>start</code> index.
+     * @throws NullPointerException      if <code>ch == null</code>.
      * @throws IndexOutOfBoundsException if
-     *         <code>start &lt; 0 || start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException if the specified character string does not match the
-     *         <em>Name</em> production.
+     *                                   <code>start &lt; 0 || start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified character string does not match the
+     *                                   <em>Name</em> production.
      */
     public static final void checkName(char[] ch, int start, int length) throws NullPointerException, IndexOutOfBoundsException, InvalidXMLException {
 
@@ -121,11 +121,11 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified string matches the <em>SystemLiteral</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-SystemLiteral">Definition of SystemLiteral</a>.
-     * 
+     *
      * @param s the character string to check, cannot be <code>null</code>.
-     * @throws NullPointerException if <code>s == null</code>.
      * @return <code>true</code> if the {@link String} matches the production, or <code>false</code>
-     *         otherwise.
+     * otherwise.
+     * @throws NullPointerException if <code>s == null</code>.
      */
     public static final boolean isSystemLiteral(String s) throws NullPointerException {
         try {
@@ -139,11 +139,11 @@ public final class XMLChecker extends Object {
     /**
      * Checks if the specified string matches the <em>SystemLiteral</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-SystemLiteral">Definition of SystemLiteral</a>.
-     * 
+     *
      * @param s the character string to check, cannot be <code>null</code>.
      * @throws NullPointerException if <code>s == null</code>.
-     * @throws InvalidXMLException if the specified character string does not match the
-     *         <em>PubidLiteral</em> production.
+     * @throws InvalidXMLException  if the specified character string does not match the
+     *                              <em>PubidLiteral</em> production.
      */
     public static final void checkSystemLiteral(String s) throws NullPointerException, InvalidXMLException {
         checkSystemLiteral(s.toCharArray(), 0, s.length());
@@ -153,17 +153,17 @@ public final class XMLChecker extends Object {
      * Checks if the specified part of a character array matches the <em>SystemLiteral</em>
      * production. See: <a href="http://www.w3.org/TR/REC-xml#NT-SystemLiteral">Definition of
      * SystemLiteral</a>.
-     * 
-     * @param ch the character array that contains the characters to be checked, cannot be
-     *        <code>null</code>.
-     * @param start the start index into <code>ch</code>, must be &gt;= 0.
+     *
+     * @param ch     the character array that contains the characters to be checked, cannot be
+     *               <code>null</code>.
+     * @param start  the start index into <code>ch</code>, must be &gt;= 0.
      * @param length the number of characters to take from <code>ch</code>, starting at the
-     *        <code>start</code> index.
-     * @throws NullPointerException if <code>ch == null</code>.
+     *               <code>start</code> index.
+     * @throws NullPointerException      if <code>ch == null</code>.
      * @throws IndexOutOfBoundsException if
-     *         <code>start &lt; 0 || start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException if the specified character string does not match the
-     *         <em>SystemLiteral</em> production.
+     *                                   <code>start &lt; 0 || start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified character string does not match the
+     *                                   <em>SystemLiteral</em> production.
      */
     public static final void checkSystemLiteral(char[] ch, int start, int length) throws NullPointerException, IndexOutOfBoundsException, InvalidXMLException {
 
@@ -210,11 +210,11 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified string matches the <em>PubidLiteral</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-PubidLiteral">Definition of PubidLiteral</a>.
-     * 
+     *
      * @param s the character string to check, cannot be <code>null</code>.
-     * @throws NullPointerException if <code>s == null</code>.
      * @return <code>true</code> if the {@link String} matches the production, or <code>false</code>
-     *         otherwise.
+     * otherwise.
+     * @throws NullPointerException if <code>s == null</code>.
      */
     public static final boolean isPubidLiteral(String s) throws NullPointerException {
         try {
@@ -228,11 +228,11 @@ public final class XMLChecker extends Object {
     /**
      * Checks if the specified string matches the <em>PubidLiteral</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-PubidLiteral">Definition of PubidLiteral</a>.
-     * 
+     *
      * @param s the character string to check, cannot be <code>null</code>.
      * @throws NullPointerException if <code>s == null</code>.
-     * @throws InvalidXMLException if the specified character string does not match the
-     *         <em>PubidLiteral</em> production.
+     * @throws InvalidXMLException  if the specified character string does not match the
+     *                              <em>PubidLiteral</em> production.
      */
     public static final void checkPubidLiteral(String s) throws NullPointerException, InvalidXMLException {
         checkPubidLiteral(s.toCharArray(), 0, s.length());
@@ -242,17 +242,17 @@ public final class XMLChecker extends Object {
      * Checks if the specified part of a character array matches the <em>PubidLiteral</em>
      * production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-PubidLiteral">Definition of PubidLiteral</a>.
-     * 
-     * @param ch the character array that contains the characters to be checked, cannot be
-     *        <code>null</code>.
-     * @param start the start index into <code>ch</code>, must be &gt;= 0.
+     *
+     * @param ch     the character array that contains the characters to be checked, cannot be
+     *               <code>null</code>.
+     * @param start  the start index into <code>ch</code>, must be &gt;= 0.
      * @param length the number of characters to take from <code>ch</code>, starting at the
-     *        <code>start</code> index.
-     * @throws NullPointerException if <code>ch == null</code>.
+     *               <code>start</code> index.
+     * @throws NullPointerException      if <code>ch == null</code>.
      * @throws IndexOutOfBoundsException if
-     *         <code>start &lt; 0 || start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException if the specified character string does not match the
-     *         <em>PubidLiteral</em> production.
+     *                                   <code>start &lt; 0 || start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified character string does not match the
+     *                                   <em>PubidLiteral</em> production.
      */
     public static final void checkPubidLiteral(char[] ch, int start, int length) throws NullPointerException, IndexOutOfBoundsException, InvalidXMLException {
 
@@ -299,10 +299,10 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified character matches the <em>NameChar</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-NameChar">Definition of NameChar</a>.
-     * 
+     *
      * @param c the character to check.
      * @return <code>true</code> if the character matches the production, or <code>false</code> if
-     *         it does not.
+     * it does not.
      */
     private static final boolean isNameChar(char c) {
         return c == '.' || c == '-' || c == '_' || c == ':' || isDigit(c) || isLetter(c) || isCombiningChar(c) || isExtender(c);
@@ -311,10 +311,10 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified character matches the <em>Letter</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-Letter">Definition of Letter</a>.
-     * 
+     *
      * @param c the character to check.
      * @return <code>true</code> if the character matches the production, or <code>false</code> if
-     *         it does not.
+     * it does not.
      */
     private static final boolean isLetter(char c) {
         return isBaseChar(c) || isIdeographic(c);
@@ -323,10 +323,10 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified character matches the <em>BaseChar</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-BaseChar">Definition of BaseChar</a>.
-     * 
+     *
      * @param c the character to check.
      * @return <code>true</code> if the character matches the production, or <code>false</code> if
-     *         it does not.
+     * it does not.
      */
     private static final boolean isBaseChar(char c) {
         int n = c;
@@ -336,10 +336,10 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified character matches the <em>Ideographic</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-Ideographic">Definition of Ideographic</a>.
-     * 
+     *
      * @param c the character to check.
      * @return <code>true</code> if the character matches the production, or <code>false</code> if
-     *         it does not.
+     * it does not.
      */
     private static final boolean isIdeographic(char c) {
         int n = c;
@@ -349,10 +349,10 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified character matches the <em>CombiningChar</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-CombiningChar">Definition of CombiningChar</a>.
-     * 
+     *
      * @param c the character to check.
      * @return <code>true</code> if the character matches the production, or <code>false</code> if
-     *         it does not.
+     * it does not.
      */
     private static final boolean isCombiningChar(char c) {
         int n = c;
@@ -362,10 +362,10 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified character matches the <em>Digit</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-Digit">Definition of Digit</a>.
-     * 
+     *
      * @param c the character to check.
      * @return <code>true</code> if the character matches the production, or <code>false</code> if
-     *         it does not.
+     * it does not.
      */
     private static final boolean isDigit(char c) {
         int n = c;
@@ -375,10 +375,10 @@ public final class XMLChecker extends Object {
     /**
      * Determines if the specified character matches the <em>Extender</em> production.
      * See: <a href="http://www.w3.org/TR/REC-xml#NT-Extender">Definition of Extender</a>.
-     * 
+     *
      * @param c the character to check.
      * @return <code>true</code> if the character matches the production, or <code>false</code> if
-     *         it does not.
+     * it does not.
      */
     private static final boolean isExtender(char c) {
         int n = c;

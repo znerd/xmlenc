@@ -43,7 +43,7 @@ import java.io.IOException;
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * </tr>
  * <tr>
- * <th>{@link #dtd(String,String,String)}</th>
+ * <th>{@link #dtd(String, String, String)}</th>
  * <td><acronym title="BEFORE_ROOT_ELEMENT">S2</acronym></td>
  * <td><acronym title="BEFORE_ROOT_ELEMENT">S2</acronym></td>
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
@@ -63,7 +63,7 @@ import java.io.IOException;
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * </tr>
  * <tr>
- * <th>{@link #attribute(String,String)}</th>
+ * <th>{@link #attribute(String, String)}</th>
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
@@ -95,7 +95,7 @@ import java.io.IOException;
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * </tr>
  * <tr>
- * <th>{@link #pcdata(char[],int,int)}</th>
+ * <th>{@link #pcdata(char[], int, int)}</th>
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
@@ -125,7 +125,7 @@ import java.io.IOException;
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * </tr>
  * <tr>
- * <th>{@link #whitespace(char[],int,int)}</th>
+ * <th>{@link #whitespace(char[], int, int)}</th>
  * <td><acronym title="BEFORE_DTD_DECLARATION">S1</acronym></td>
  * <td><acronym title="BEFORE_DTD_DECLARATION">S1</acronym></td>
  * <td><acronym title="BEFORE_ROOT_ELEMENT">S4</acronym></td>
@@ -145,7 +145,7 @@ import java.io.IOException;
  * <td class="err"><acronym title="IllegalStateException">ISE</acronym></td>
  * </tr>
  * <tr>
- * <th>{@link #pi(String,String)}</th>
+ * <th>{@link #pi(String, String)}</th>
  * <td><acronym title="BEFORE_DTD_DECLARATION">S1</acronym></td>
  * <td><acronym title="BEFORE_DTD_DECLARATION">S1</acronym></td>
  * <td><acronym title="BEFORE_ROOT_ELEMENT">S4</acronym></td>
@@ -176,7 +176,7 @@ import java.io.IOException;
  * <li>S5: {@link #AFTER_ROOT_ELEMENT AFTER_ROOT_ELEMENT}</li>
  * <li>S6: {@link #DOCUMENT_ENDED DOCUMENT_ENDED}</li>
  * </ul>
- * 
+ *
  * @since XMLenc 0.30
  */
 public interface XMLEventListener extends XMLEventListenerStates {
@@ -189,11 +189,9 @@ public interface XMLEventListener extends XMLEventListenerStates {
 
     /**
      * Returns the current state of this outputter.
-     * 
-     * @return
-     *         the current state, cannot be <code>null</code>.
-     * @throws UnsupportedOperationException
-     *         if this is not a stateful XML event listener.
+     *
+     * @return the current state, cannot be <code>null</code>.
+     * @throws UnsupportedOperationException if this is not a stateful XML event listener.
      */
     XMLEventListenerState getState() throws UnsupportedOperationException;
 
@@ -203,32 +201,27 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * <p>
      * Calling this method with {@link #UNINITIALIZED UNINITIALIZED} as the state is equivalent to
      * calling {@link #reset()}.
-     * 
-     * @param newState
-     *        the new state, not <code>null</code>.
-     * @param newElementStack
-     *        the new element stack, if <code>newState == {@link #START_TAG_OPEN START_TAG_OPEN} ||
-     *        newState == {@link #WITHIN_ELEMENT WITHIN_ELEMENT}</code> then it should be
-     *        non-<code>null</code> and containing no <code>null</code> elements,
-     *        otherwise it must be <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>newState == null
-     *          || (newState == {@link #START_TAG_OPEN START_TAG_OPEN} &amp;&amp; newElementStack ==
-     *         null) || (newState == {@link #WITHIN_ELEMENT WITHIN_ELEMENT} &amp;&amp;
-     *         newElementStack == null) || (newState != {@link #START_TAG_OPEN START_TAG_OPEN}
-     *         &amp;&amp; newState != {@link #WITHIN_ELEMENT WITHIN_ELEMENT} &amp;&amp;
-     *         newElementStack != null) || newElementStack[<i>n</i>] == null</code> (where
-     *         <code>0 &lt;= <i>n</i> &lt; newElementStack.length</code>).
+     *
+     * @param newState        the new state, not <code>null</code>.
+     * @param newElementStack the new element stack, if <code>newState == {@link #START_TAG_OPEN START_TAG_OPEN} ||
+     *                        newState == {@link #WITHIN_ELEMENT WITHIN_ELEMENT}</code> then it should be
+     *                        non-<code>null</code> and containing no <code>null</code> elements,
+     *                        otherwise it must be <code>null</code>.
+     * @throws IllegalArgumentException if <code>newState == null
+     *                                  || (newState == {@link #START_TAG_OPEN START_TAG_OPEN} &amp;&amp; newElementStack ==
+     *                                  null) || (newState == {@link #WITHIN_ELEMENT WITHIN_ELEMENT} &amp;&amp;
+     *                                  newElementStack == null) || (newState != {@link #START_TAG_OPEN START_TAG_OPEN}
+     *                                  &amp;&amp; newState != {@link #WITHIN_ELEMENT WITHIN_ELEMENT} &amp;&amp;
+     *                                  newElementStack != null) || newElementStack[<i>n</i>] == null</code> (where
+     *                                  <code>0 &lt;= <i>n</i> &lt; newElementStack.length</code>).
      */
     void setState(XMLEventListenerState newState, String[] newElementStack) throws IllegalArgumentException;
 
     /**
      * Notification of an XML declaration. No encoding is explicitly specified.
-     * 
-     * @throws IllegalStateException
-     *         if <code>getState() != BEFORE_XML_DECLARATION</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE ERROR_STATE}.
+     *
+     * @throws IllegalStateException if <code>getState() != BEFORE_XML_DECLARATION</code>.
+     * @throws IOException           if an I/O error occurs; this will set the state to {@link #ERROR_STATE ERROR_STATE}.
      */
     void declaration() throws IllegalStateException, IOException;
 
@@ -251,45 +244,35 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * <blockquote>
      * <code>&lt;!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</code>
      * </blockquote>
-     * 
-     * @param name
-     *        the name of the document type, not <code>null</code>.
-     * @param publicID
-     *        the public identifier, can be <code>null</code>.
-     * @param systemID
-     *        the system identifier, can be <code>null</code>, but otherwise
-     *        it should be a properly formatted URL, see
-     *        <a href="http://www.w3.org/TR/2000/REC-xml-20001006#sec-external-ent">section 4.2.2
-     *        External Entities</a>
-     *        in the XML 1.0 Specification.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #BEFORE_XML_DECLARATION BEFORE_XML_DECLARATION}
-     *         &amp;&amp; getState() != {@link #BEFORE_DTD_DECLARATION BEFORE_DTD_DECLARATION}
-     *         </code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null ||
-     *          (publicID != null &amp;&amp; systemID == null)</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name     the name of the document type, not <code>null</code>.
+     * @param publicID the public identifier, can be <code>null</code>.
+     * @param systemID the system identifier, can be <code>null</code>, but otherwise
+     *                 it should be a properly formatted URL, see
+     *                 <a href="http://www.w3.org/TR/2000/REC-xml-20001006#sec-external-ent">section 4.2.2
+     *                 External Entities</a>
+     *                 in the XML 1.0 Specification.
+     * @throws IllegalStateException    if <code>getState() != {@link #BEFORE_XML_DECLARATION BEFORE_XML_DECLARATION}
+     *                                  &amp;&amp; getState() != {@link #BEFORE_DTD_DECLARATION BEFORE_DTD_DECLARATION}
+     *                                  </code>.
+     * @throws IllegalArgumentException if <code>name == null ||
+     *                                  (publicID != null &amp;&amp; systemID == null)</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void dtd(String name, String publicID, String systemID) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
     /**
      * Notification of an element start tag.
-     * 
-     * @param type
-     *        the type of the tag to start, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if
-     *         <code>getState() != {@link #BEFORE_XML_DECLARATION BEFORE_XML_DECLARATION} &amp;&amp;
-     *             getState() != {@link #BEFORE_DTD_DECLARATION BEFORE_DTD_DECLARATION} &amp;&amp;
-     *             getState() != {@link #BEFORE_ROOT_ELEMENT    BEFORE_ROOT_ELEMENT} &amp;&amp;
-     *             getState() != {@link #START_TAG_OPEN         START_TAG_OPEN} &amp;&amp;
-     *             getState() != {@link #WITHIN_ELEMENT         WITHIN_ELEMENT}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>type == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE ERROR_STATE}.
+     *
+     * @param type the type of the tag to start, not <code>null</code>.
+     * @throws IllegalStateException    if
+     *                                  <code>getState() != {@link #BEFORE_XML_DECLARATION BEFORE_XML_DECLARATION} &amp;&amp;
+     *                                  getState() != {@link #BEFORE_DTD_DECLARATION BEFORE_DTD_DECLARATION} &amp;&amp;
+     *                                  getState() != {@link #BEFORE_ROOT_ELEMENT    BEFORE_ROOT_ELEMENT} &amp;&amp;
+     *                                  getState() != {@link #START_TAG_OPEN         START_TAG_OPEN} &amp;&amp;
+     *                                  getState() != {@link #WITHIN_ELEMENT         WITHIN_ELEMENT}</code>.
+     * @throws IllegalArgumentException if <code>type == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE ERROR_STATE}.
      */
     void startTag(String type) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
@@ -298,72 +281,52 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * open element.
      * <p>
      * The attribute value is surrounded by single quotes.
-     * 
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != {@link #START_TAG_OPEN}</code>.
-     * @throws IllegalArgumentException
-     *         if <code>name == null || value == null</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param name  the name of the attribute, not <code>null</code>.
+     * @param value the value of the attribute, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != {@link #START_TAG_OPEN}</code>.
+     * @throws IllegalArgumentException if <code>name == null || value == null</code>.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void attribute(String name, String value) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
     /**
      * Notification of an element end tag.
-     * 
-     * @throws IllegalStateException
-     *         if <code>getState() != START_TAG_OPEN &amp;&amp;
-     *             getState() != WITHIN_ELEMENT</code>
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @throws IllegalStateException if <code>getState() != START_TAG_OPEN &amp;&amp;
+     *                               getState() != WITHIN_ELEMENT</code>
+     * @throws IOException           if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void endTag() throws IllegalStateException, IOException;
 
     /**
      * Notification of a PCDATA section (as a <code>String</code>).
-     * 
-     * @param text
-     *        the PCDATA section contents, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != START_TAG_OPEN &amp;&amp;
-     *             getState() != WITHIN_ELEMENT</code>
-     * @throws IllegalArgumentException
-     *         if <code>text == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param text the PCDATA section contents, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != START_TAG_OPEN &amp;&amp;
+     *                                  getState() != WITHIN_ELEMENT</code>
+     * @throws IllegalArgumentException if <code>text == null</code>.
+     * @throws InvalidXMLException      if the specified text contains an invalid character.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void pcdata(String text) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
     /**
      * Notification of a PCDATA section (as a <code>char</code> array).
-     * 
-     * @param ch
-     *        the character array containing the PCDATA section contents, not <code>null</code>.
-     * @param start
-     *        the start index in the array, must be &gt;= 0 and it must be &lt;
-     *        <code>ch.length</code>.
-     * @param length
-     *        the number of characters to read from the array, must be &gt; 0.
-     * @throws IllegalStateException
-     *         if <code>getState() != START_TAG_OPEN &amp;&amp;
-     *             getState() != WITHIN_ELEMENT</code>
-     * @throws IllegalArgumentException
-     *         if <code>ch     ==    null
-     *          || start  &lt;  0
-     *          || start  &gt;= ch.length
-     *          || length &lt;  0</code>.
-     * @throws IndexOutOfBoundsException
-     *         if <code>start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param ch     the character array containing the PCDATA section contents, not <code>null</code>.
+     * @param start  the start index in the array, must be &gt;= 0 and it must be &lt;
+     *               <code>ch.length</code>.
+     * @param length the number of characters to read from the array, must be &gt; 0.
+     * @throws IllegalStateException     if <code>getState() != START_TAG_OPEN &amp;&amp;
+     *                                   getState() != WITHIN_ELEMENT</code>
+     * @throws IllegalArgumentException  if <code>ch     ==    null
+     *                                   || start  &lt;  0
+     *                                   || start  &gt;= ch.length
+     *                                   || length &lt;  0</code>.
+     * @throws IndexOutOfBoundsException if <code>start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified text contains an invalid character.
+     * @throws IOException               if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void pcdata(char[] ch, int start, int length) throws IllegalStateException, IllegalArgumentException, IndexOutOfBoundsException, InvalidXMLException, IOException;
 
@@ -381,18 +344,13 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * <p>
      * If the specified string contains characters that cannot be printed in this encoding, then the
      * result is undefined.
-     * 
-     * @param text
-     *        the contents of the CDATA section, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() != START_TAG_OPEN &amp;&amp;
-     *             getState() != WITHIN_ELEMENT</code>
-     * @throws IllegalArgumentException
-     *         if <code>text == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param text the contents of the CDATA section, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() != START_TAG_OPEN &amp;&amp;
+     *                                  getState() != WITHIN_ELEMENT</code>
+     * @throws IllegalArgumentException if <code>text == null</code>.
+     * @throws InvalidXMLException      if the specified text contains an invalid character.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void cdata(String text) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
@@ -406,17 +364,12 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise if the state is {@link #START_TAG_OPEN} then it
      * will be set to {@link #WITHIN_ELEMENT}, otherwise the state will not be changed.
-     * 
-     * @param whitespace
-     *        the ignorable whitespace to be written, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() == ERROR_STATE</code>.
-     * @throws IllegalArgumentException
-     *         if <code>whitespace == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param whitespace the ignorable whitespace to be written, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() == ERROR_STATE</code>.
+     * @throws IllegalArgumentException if <code>whitespace == null</code>.
+     * @throws InvalidXMLException      if the specified text contains an invalid character.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void whitespace(String whitespace) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
@@ -430,27 +383,19 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise if the state is {@link #START_TAG_OPEN} then it
      * will be set to {@link #WITHIN_ELEMENT}, otherwise the state will not be changed.
-     * 
-     * @param ch
-     *        the character array containing the text to be written, not <code>null</code>.
-     * @param start
-     *        the start index in the array, must be &gt;= 0 and it must be &lt;
-     *        <code>ch.length</code>.
-     * @param length
-     *        the number of characters to read from the array, must be &gt; 0.
-     * @throws IllegalStateException
-     *         if <code>getState() == ERROR_STATE</code>.
-     * @throws IllegalArgumentException
-     *         if <code>ch     ==    null
-     *          || start  &lt;  0
-     *          || start  &gt;= ch.length
-     *          || length &lt;  0</code>.
-     * @throws IndexOutOfBoundsException
-     *         if <code>start + length &gt; ch.length</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param ch     the character array containing the text to be written, not <code>null</code>.
+     * @param start  the start index in the array, must be &gt;= 0 and it must be &lt;
+     *               <code>ch.length</code>.
+     * @param length the number of characters to read from the array, must be &gt; 0.
+     * @throws IllegalStateException     if <code>getState() == ERROR_STATE</code>.
+     * @throws IllegalArgumentException  if <code>ch     ==    null
+     *                                   || start  &lt;  0
+     *                                   || start  &gt;= ch.length
+     *                                   || length &lt;  0</code>.
+     * @throws IndexOutOfBoundsException if <code>start + length &gt; ch.length</code>.
+     * @throws InvalidXMLException       if the specified text contains an invalid character.
+     * @throws IOException               if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void whitespace(char[] ch, int start, int length) throws IllegalStateException, IllegalArgumentException, IndexOutOfBoundsException, InvalidXMLException, IOException;
 
@@ -460,17 +405,12 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise if the state is {@link #START_TAG_OPEN} then it
      * will be set to {@link #WITHIN_ELEMENT}, otherwise the state will not be changed.
-     * 
-     * @param text
-     *        the text for the comment be written, not <code>null</code>.
-     * @throws IllegalStateException
-     *         if <code>getState() == ERROR_STATE</code>.
-     * @throws IllegalArgumentException
-     *         if <code>text == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param text the text for the comment be written, not <code>null</code>.
+     * @throws IllegalStateException    if <code>getState() == ERROR_STATE</code>.
+     * @throws IllegalArgumentException if <code>text == null</code>.
+     * @throws InvalidXMLException      if the specified text contains an invalid character.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void comment(String text) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
@@ -484,33 +424,25 @@ public interface XMLEventListener extends XMLEventListenerStates {
      * <p>
      * If the state equals {@link #BEFORE_XML_DECLARATION}, then it will be set to
      * {@link #BEFORE_DTD_DECLARATION}, otherwise the state will not be changed.
-     * 
-     * @param target
-     *        an identification of the application at which the instruction is
-     *        targeted, not <code>null</code>.
-     * @param instruction
-     *        the instruction, can be <code>null</code>, which is equivalent to an
-     *        empty string.
-     * @throws IllegalStateException
-     *         if <code>getState() == ERROR_STATE</code>.
-     * @throws IllegalArgumentException
-     *         if <code>target == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @param target      an identification of the application at which the instruction is
+     *                    targeted, not <code>null</code>.
+     * @param instruction the instruction, can be <code>null</code>, which is equivalent to an
+     *                    empty string.
+     * @throws IllegalStateException    if <code>getState() == ERROR_STATE</code>.
+     * @throws IllegalArgumentException if <code>target == null</code>.
+     * @throws InvalidXMLException      if the specified text contains an invalid character.
+     * @throws IOException              if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void pi(String target, String instruction) throws IllegalStateException, IllegalArgumentException, InvalidXMLException, IOException;
 
     /**
      * Notification of the end of the document. After calling this method, none
      * of the other notification methods can be called until {@link #reset()} is called.
-     * 
-     * @throws IllegalStateException
-     *         if <code>getState() == UNINITIALIZED
-     *          || getState() == DOCUMENT_ENDED</code>.
-     * @throws IOException
-     *         if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
+     *
+     * @throws IllegalStateException if <code>getState() == UNINITIALIZED
+     *                               || getState() == DOCUMENT_ENDED</code>.
+     * @throws IOException           if an I/O error occurs; this will set the state to {@link #ERROR_STATE}.
      */
     void endDocument() throws IllegalStateException, IOException;
 }

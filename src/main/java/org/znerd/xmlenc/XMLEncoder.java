@@ -15,7 +15,7 @@ import java.io.Writer;
  * <li><code>US-ASCII</code>, with alias <code>ASCII</code>
  * <li>all <code>ISO-8859</code> encodings
  * </ul>
- * 
+ *
  * @since XMLenc 0.1
  */
 public class XMLEncoder extends Object {
@@ -23,11 +23,11 @@ public class XMLEncoder extends Object {
     /**
      * Retrieves an <code>XMLEncoder</code> for the specified encoding. If no
      * suitable instance can be returned, then an exception is thrown.
-     * 
+     *
      * @param encoding the name of the encoding, not <code>null</code>.
      * @return an <code>XMLEncoder</code> instance that matches the specified encoding, never
-     *         <code>null</code>.
-     * @throws IllegalArgumentException if <code>encoding == null</code>.
+     * <code>null</code>.
+     * @throws IllegalArgumentException     if <code>encoding == null</code>.
      * @throws UnsupportedEncodingException if the specified encoding is not supported.
      */
     public static final XMLEncoder getEncoder(String encoding) throws IllegalArgumentException, UnsupportedEncodingException {
@@ -76,15 +76,12 @@ public class XMLEncoder extends Object {
 
     /**
      * Constructs a new <code>XMLEncoder</code> instance.
-     * 
-     * @param encoding
-     *        the name of the encoding, not <code>null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>encoding == null</code>.
-     * @throws UnsupportedEncodingException
-     *         if the specified encoding is not supported.
+     *
+     * @param encoding the name of the encoding, not <code>null</code>.
+     * @throws IllegalArgumentException     if <code>encoding == null</code>.
+     * @throws UnsupportedEncodingException if the specified encoding is not supported.
      * @deprecated Deprecated since XMLenc 0.47. Use the factory method {@link #getEncoder(String)}
-     *             instead.
+     * instead.
      */
     @Deprecated
     public XMLEncoder(String encoding) throws IllegalArgumentException, UnsupportedEncodingException {
@@ -135,9 +132,8 @@ public class XMLEncoder extends Object {
 
     /**
      * Returns the encoding.
-     * 
-     * @return
-     *         the encoding passed to the constructor, never <code>null</code>.
+     *
+     * @return the encoding passed to the constructor, never <code>null</code>.
      */
     public String getEncoding() {
         return _encoding;
@@ -145,12 +141,12 @@ public class XMLEncoder extends Object {
 
     /**
      * Writes an XML declaration with double quotes.
-     * 
+     *
      * @param out the character stream to write to, not <code>null</code>.
      * @throws NullPointerException if <code>out == null</code>.
-     * @throws IOException if an I/O error occurs.
-     * @deprecated Deprecated since XMLenc 0.54. Use {@link #declaration(Writer,char)} instead,
-     *             which also requires the quotation mark character to use.
+     * @throws IOException          if an I/O error occurs.
+     * @deprecated Deprecated since XMLenc 0.54. Use {@link #declaration(Writer, char)} instead,
+     * which also requires the quotation mark character to use.
      */
     @Deprecated
     public void declaration(Writer out) throws NullPointerException, IOException {
@@ -159,13 +155,13 @@ public class XMLEncoder extends Object {
 
     /**
      * Writes an XML declaration with double quotes.
-     * 
-     * @param out the character stream to write to, not <code>null</code>.
+     *
+     * @param out           the character stream to write to, not <code>null</code>.
      * @param quotationMark the quotationMark to use, either <code>'\''</code> or <code>'"'</code>.
      * @throws IllegalArgumentException if
-     *         <code>quotationMark != '\'' &amp;&amp; quotationMark != '"'</code>
-     * @throws NullPointerException if <code>out == null</code>.
-     * @throws IOException if an I/O error occurs.
+     *                                  <code>quotationMark != '\'' &amp;&amp; quotationMark != '"'</code>
+     * @throws NullPointerException     if <code>out == null</code>.
+     * @throws IOException              if an I/O error occurs.
      * @since XMLenc 0.54
      */
     public void declaration(Writer out, char quotationMark) throws IllegalArgumentException, NullPointerException, IOException {
@@ -182,19 +178,13 @@ public class XMLEncoder extends Object {
      * <p />
      * It must be specified whether ampersands should be escaped. Unless ampersands are escaped,
      * entity references can be written.
-     * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @param text
-     *        the text to be written, not <code>null</code>.
-     * @param escapeAmpersands
-     *        flag that indicates whether ampersands should be escaped.
-     * @throws NullPointerException
-     *         if <code>out == null || text == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @param out              the character stream to write to, not <code>null</code>.
+     * @param text             the text to be written, not <code>null</code>.
+     * @param escapeAmpersands flag that indicates whether ampersands should be escaped.
+     * @throws NullPointerException if <code>out == null || text == null</code>.
+     * @throws InvalidXMLException  if the specified text contains an invalid character.
+     * @throws IOException          if an I/O error occurs.
      */
     public void text(Writer out, String text, boolean escapeAmpersands) throws NullPointerException, InvalidXMLException, IOException {
 
@@ -207,30 +197,21 @@ public class XMLEncoder extends Object {
      * <p />
      * It must be specified whether ampersands should be escaped. Unless ampersands are escaped,
      * entity references can be written.
-     * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @param ch
-     *        the character array from which to retrieve the text to be written,
-     *        not <code>null</code>.
-     * @param start
-     *        the start index into <code>ch</code>, must be &gt;= 0.
-     * @param length
-     *        the number of characters to take from <code>ch</code>, starting at
-     *        the <code>start</code> index.
-     * @param escapeAmpersands
-     *        flag that indicates if ampersands should be escaped.
-     * @throws NullPointerException
-     *         if <code>out == null || ch == null</code>.
-     * @throws IndexOutOfBoundsException
-     *         if <code>start &lt; 0
-     *          || start + length &gt; ch.length</code>; this may not be
-     *         checked before the character stream is written to, so this may
-     *         cause a <em>partial</em> failure.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @param out              the character stream to write to, not <code>null</code>.
+     * @param ch               the character array from which to retrieve the text to be written,
+     *                         not <code>null</code>.
+     * @param start            the start index into <code>ch</code>, must be &gt;= 0.
+     * @param length           the number of characters to take from <code>ch</code>, starting at
+     *                         the <code>start</code> index.
+     * @param escapeAmpersands flag that indicates if ampersands should be escaped.
+     * @throws NullPointerException      if <code>out == null || ch == null</code>.
+     * @throws IndexOutOfBoundsException if <code>start &lt; 0
+     *                                   || start + length &gt; ch.length</code>; this may not be
+     *                                   checked before the character stream is written to, so this may
+     *                                   cause a <em>partial</em> failure.
+     * @throws InvalidXMLException       if the specified text contains an invalid character.
+     * @throws IOException               if an I/O error occurs.
      */
     public void text(Writer out, char[] ch, int start, int length, boolean escapeAmpersands) throws NullPointerException, IndexOutOfBoundsException, InvalidXMLException, IOException {
 
@@ -271,17 +252,13 @@ public class XMLEncoder extends Object {
      * <p />
      * It is safe for this method to assume that the specified character does not need to be escaped
      * unless the encoding does not support the character.
-     * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @param c
-     *        the character to be written.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @param out the character stream to write to, not <code>null</code>.
+     * @param c   the character to be written.
+     * @throws InvalidXMLException if the specified text contains an invalid character.
+     * @throws IOException         if an I/O error occurs.
      * @deprecated Deprecated since XMLenc 0.51. Use the text method
-     *             {@link #text(Writer, char, boolean)} instead.
+     * {@link #text(Writer, char, boolean)} instead.
      */
     @Deprecated
     public void text(Writer out, char c) throws InvalidXMLException, IOException {
@@ -308,17 +285,12 @@ public class XMLEncoder extends Object {
      * <p />
      * It is safe for this method to assume that the specified character does not need to be escaped
      * unless the encoding does not support the character.
-     * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @param c
-     *        the character to be written.
-     * @param escapeAmpersands
-     *        flag that indicates if ampersands should be escaped.
-     * @throws InvalidXMLException
-     *         if the specified text contains an invalid character.
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @param out              the character stream to write to, not <code>null</code>.
+     * @param c                the character to be written.
+     * @param escapeAmpersands flag that indicates if ampersands should be escaped.
+     * @throws InvalidXMLException if the specified text contains an invalid character.
+     * @throws IOException         if an I/O error occurs.
      */
     public void text(Writer out, char c, boolean escapeAmpersands) throws InvalidXMLException, IOException {
         if (c >= 63 && c <= 127 || c >= 39 && c <= 59 || c >= 32 && c <= 37 || c == 38 && escapeAmpersands || c > 127 && !_sevenBitEncoding || c == 10 || c == 13 || c == 61 || c == 9) {
@@ -342,18 +314,13 @@ public class XMLEncoder extends Object {
 
     /**
      * Writes the specified whitespace string.
-     * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @param s
-     *        the character string to be written, not <code>null</code>.
-     * @throws NullPointerException
-     *         if <code>out == null || s == null</code>.
-     * @throws InvalidXMLException
-     *         if the specified character string contains a character that is
-     *         invalid as whitespace.
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @param out the character stream to write to, not <code>null</code>.
+     * @param s   the character string to be written, not <code>null</code>.
+     * @throws NullPointerException if <code>out == null || s == null</code>.
+     * @throws InvalidXMLException  if the specified character string contains a character that is
+     *                              invalid as whitespace.
+     * @throws IOException          if an I/O error occurs.
      */
     public void whitespace(Writer out, String s) throws NullPointerException, InvalidXMLException, IOException {
 
@@ -364,29 +331,21 @@ public class XMLEncoder extends Object {
 
     /**
      * Writes whitespace from the specified character array.
-     * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @param ch
-     *        the character array from which to retrieve the text to be written,
-     *        not <code>null</code>.
-     * @param start
-     *        the start index into <code>ch</code>, must be &gt;= 0.
-     * @param length
-     *        the number of characters to take from <code>ch</code>, starting at
-     *        the <code>start</code> index.
-     * @throws NullPointerException
-     *         if <code>out == null || ch == null</code>.
-     * @throws IndexOutOfBoundsException
-     *         if <code>start &lt; 0
-     *          || start + length &gt; ch.length</code>; this may not be
-     *         checked before the character stream is written to, so this may
-     *         cause a <em>partial</em> failure.
-     * @throws InvalidXMLException
-     *         if the specified character array contains a character that is invalid
-     *         as whitespace.
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @param out    the character stream to write to, not <code>null</code>.
+     * @param ch     the character array from which to retrieve the text to be written,
+     *               not <code>null</code>.
+     * @param start  the start index into <code>ch</code>, must be &gt;= 0.
+     * @param length the number of characters to take from <code>ch</code>, starting at
+     *               the <code>start</code> index.
+     * @throws NullPointerException      if <code>out == null || ch == null</code>.
+     * @throws IndexOutOfBoundsException if <code>start &lt; 0
+     *                                   || start + length &gt; ch.length</code>; this may not be
+     *                                   checked before the character stream is written to, so this may
+     *                                   cause a <em>partial</em> failure.
+     * @throws InvalidXMLException       if the specified character array contains a character that is invalid
+     *                                   as whitespace.
+     * @throws IOException               if an I/O error occurs.
      */
     public void whitespace(Writer out, char[] ch, int start, int length) throws NullPointerException, IndexOutOfBoundsException, InvalidXMLException, IOException {
 
@@ -399,22 +358,15 @@ public class XMLEncoder extends Object {
 
     /**
      * Writes an attribute assignment.
-     * 
-     * @param out
-     *        the character stream to write to, not <code>null</code>.
-     * @param name
-     *        the name of the attribute, not <code>null</code>.
-     * @param value
-     *        the value of the attribute, not <code>null</code>.
-     * @param quotationMark
-     *        the quotation mark, must be either the apostrophe (<code>'\''</code>)
-     *        or the quote character (<code>'"'</code>).
-     * @throws NullPointerException
-     *         if <code>out == null || value == null</code>.
-     * @throws IllegalArgumentException
-     *         if <code>quotationMark != '\'' &amp;&amp; quotationMark != '"'</code>.
-     * @throws IOException
-     *         if an I/O error occurs.
+     *
+     * @param out           the character stream to write to, not <code>null</code>.
+     * @param name          the name of the attribute, not <code>null</code>.
+     * @param value         the value of the attribute, not <code>null</code>.
+     * @param quotationMark the quotation mark, must be either the apostrophe (<code>'\''</code>)
+     *                      or the quote character (<code>'"'</code>).
+     * @throws NullPointerException     if <code>out == null || value == null</code>.
+     * @throws IllegalArgumentException if <code>quotationMark != '\'' &amp;&amp; quotationMark != '"'</code>.
+     * @throws IOException              if an I/O error occurs.
      */
     public void attribute(Writer out, String name, String value, char quotationMark, boolean escapeAmpersands) throws NullPointerException, IOException {
 

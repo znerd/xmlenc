@@ -3,7 +3,7 @@ package org.znerd.xmlenc;
 
 /**
  * Class that represents this <em>XMLenc</em> library.
- * 
+ *
  * @since XMLenc 0.30
  */
 public final class Library extends Object {
@@ -20,7 +20,7 @@ public final class Library extends Object {
 
     /**
      * Returns the version of the <em>xmlenc</em> library.
-     * 
+     *
      * @return the version of this library, for example <code>"1.0"</code>, never <code>null</code>.
      */
     public static final String getVersion() {
