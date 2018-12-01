@@ -40,7 +40,7 @@ CHANGES INTRODUCED IN XMLENC 0.54:
 ______________________________________________________________________________
 CHANGES INTRODUCED IN XMLENC 0.53:
 
-* Updated e-mailadresses of Ernst de Haan and Anthony Goubard.
+* Updated e-mail addresses of Ernst de Haan and Anthony Goubard.
 
 * Slightly improved the XMLOutputter Javadoc class comments by mentioning
   whether XML Namespaces are supported.
@@ -98,8 +98,8 @@ CHANGES INTRODUCED IN XMLENC 0.49:
 * Extended tests for indentations and line breaks. Improved related code. Now
   a line break must first be set before an indentation can be set. Also, an
   indentation must only contain spaces and/or horizontal tab characters.
-  Unsetting the line break now automatically resets the indentation. Fixed a
-  number of bugs that caused unproper output when using indentation.
+  Un-setting the line break now automatically resets the indentation. Fixed a
+  number of bugs that caused improper output when using indentation.
 
 * Now checking the format of SystemID and PublicID in
   dtd(String,String,String).
@@ -134,7 +134,7 @@ CHANGES INTRODUCED IN XMLENC 0.45:
 * Performance-optimized the text and attribute methods in the XMLOutputter
   class.
 
-* Added an abtract method shouldEscape() to the XMLOutputter.
+* Added an abstract method shouldEscape() to the XMLOutputter.
 
 * The method text(Write,char) is now implemented in the XMLOutputter.
 
